@@ -14,6 +14,7 @@
   "license": "BSD-2-Clause",
   "dependencies": {
     "logfmt": "~1.1.2",
-    "express": "~4.4.3"
+    "express": "~4.4.3",
+    "pg": "~3.3.0"
   }
 }
