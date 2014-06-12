@@ -1,0 +1,19 @@
+{
+  "name": "helpp",
+  "version": "0.0.0",
+  "description": "Solve your problems.",
+  "main": "web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Customer",
+    "Service"
+  ],
+  "author": "Piyush-Poddar-Akshay-Srivatsan",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "logfmt": "~1.1.2",
+    "express": "~4.4.3"
+  }
+}
