@@ -2,7 +2,7 @@ var express = require("express");
 var logfmt = require("logfmt");
 var pg = require('pg');
 var app = express();
-var DATABASE_URL = "ec2-107-21-100-118.compute-1.amazonaws.com"
+var DATABASE_URL = "postgres://ivaqkulwuyokvo:JBfCRSFIcaWoqRI_jE0dL36DnV@ec2-107-21-100-118.compute-1.amazonaws.com:5432/dbjkvhetm21oap"
 
 app.use(logfmt.requestLogger());
 
