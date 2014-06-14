@@ -1,5 +1,6 @@
 var express = require("express");
 var logfmt = require("logfmt");
+var pg = require('pg');
 var app = express();
 
 app.use(logfmt.requestLogger());
