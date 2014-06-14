@@ -30,7 +30,7 @@ app.get('/testquery', function(req, res)
         
         query.on('row', function(row)
         {
-            console.log(JSON.stringify(row));
+            res.send(JSON.stringify(row));
         });
     });
 })
