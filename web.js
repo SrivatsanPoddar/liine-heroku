@@ -24,7 +24,13 @@ app.get('/akshay', function(req, res)
 
 app.get('/testquery', function(req, res)
 {
-    res.send('Eventually this will send a SQL response');
+    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+  client.query('SELECT * WHERE PARENT_NODE = NULL FROM instructiontree', function(err, result) {
+    done();
+    if(err) return console.error(err);
+    console.log(result.rows);
+  });
+});
 })
 
 var port = Number(process.env.PORT || 5000);
