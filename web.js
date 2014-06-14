@@ -34,10 +34,9 @@ app.get('/testquery', function(req, res)
     query.on('row', function(result)
     {
         console.log(result);
-
         if (!result)
         {
-            return res.send('No data found');
+            res.send('No data found');
         }
         else
         {
