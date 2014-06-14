@@ -25,7 +25,7 @@ app.get('/akshay', function(req, res)
 app.get('/testquery', function(req, res)
 {
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-  client.query('SELECT * WHERE PARENT_NODE = NULL FROM instructiontree', function(err, result) {
+  client.query('SELECT * FROM instructiontree', function(err, result) {
     done();
     if(err) return console.error(err);
     console.log(result.rows);
