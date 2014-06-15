@@ -1,6 +1,8 @@
 var express = require("express")
 var logfmt = require("logfmt");
 var app = express();
+var pg = require('pg');
+var conString = "postgres://ivaqkulwuyokvo:JBfCRSFIcaWoqRI_jE0dL36DnV@ec2-107-21-100-118.compute-1.amazonaws.com:5432/dbjkvhetm21oap";
 
 app.use(logfmt.requestLogger());
 
@@ -25,6 +27,26 @@ app.get('/akshay', function(req, res)
 
 app.get('/testquery', function(req, res)
 {
+    pg.connect(conString, function(err, client, done)
+    {
+      if(err)
+      {
+        return console.error('error fetching client from pool', err);
+      }
+      client.query('SELECT * WHERE PARENT_NODE = NULL FROM instructiontree', function(err, result)
+      {
+        //call `done()` to release the client back to the pool
+        done();
+        if(err)
+        {
+          return console.error('error running query', err);
+        }
+        console.log(result.rows[0].display_text);
+        console.log(result.rows[1].display_text);
+        res.send(result.rows[0].display_text);
+        res.send(result.rows[1].display_text);
+      });
+    });
 });
 
 var port = Number(process.env.PORT || 5000);
