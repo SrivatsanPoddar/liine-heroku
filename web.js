@@ -30,7 +30,7 @@ app.get('/testquery', function(req, res)
         {
           return console.error('error fetching client from pool', err);
         }
-        client.query('SELECT * FROM instructiontree', function(err, result)
+        client.query('SELECT * FROM instructiontree WHERE parent_node_id IS NULL', function(err, result)
         {
             //call `done()` to release the client back to the pool
             done();
