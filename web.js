@@ -21,7 +21,7 @@ app.get('/akshay', function(req, res)
 {
     res.send('Akshay can finally use Node.js');
 });
-
+/**
 app.get('/testquery', function(req, res)
 {
     pg.connect(conString, function(err, client, done)
@@ -45,7 +45,7 @@ app.get('/testquery', function(req, res)
       });
     });
 });
-
+*/
 var port = Number(process.env.PORT || 5000);
 
 app.listen(port, function()
