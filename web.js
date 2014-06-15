@@ -30,7 +30,7 @@ app.get('/testquery', function(req, res)
         {
           return console.error('error fetching client from pool', err);
         }
-        client.query('SELECT * FROM instructiontree WHERE parent_node_id = NULL', function(err, result)
+        client.query('SELECT * FROM instructiontree', function(err, result)
         {
             //call `done()` to release the client back to the pool
             done();
@@ -38,7 +38,7 @@ app.get('/testquery', function(req, res)
             {
               return console.error('error running query', err);
             }
-            res.send(result.display_text);
+            res.send(result);
             res.send('End of results');
         });
     });
