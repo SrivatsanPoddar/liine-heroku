@@ -6,9 +6,6 @@ var conString = "postgres://ivaqkulwuyokvo:JBfCRSFIcaWoqRI_jE0dL36DnV@ec2-107-21
 
 app.use(logfmt.requestLogger());
 
-client = new pg.Client(connectionString);
-client.connect();
-
 app.get('/', function(req, res)
 {
   res.send('Hello World!');
