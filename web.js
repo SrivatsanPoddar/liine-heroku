@@ -40,6 +40,7 @@ app.get('/testquery', function(req, res)
             }
             console.log(result.rows[0].display_text);
             res.send(result.rows[0].display_text);
+            res.send('End of results');
         });
     });
 });
