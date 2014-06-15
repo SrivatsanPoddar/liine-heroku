@@ -38,7 +38,7 @@ app.get('/testquery', function(req, res)
             {
               return console.error('error running query', err);
             }
-            res.send(result.rows[0].display_text);
+            res.send(result.display_text);
             res.send('End of results');
         });
     });
