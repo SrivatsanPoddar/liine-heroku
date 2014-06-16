@@ -8,7 +8,23 @@ app.use(logfmt.requestLogger());
 
 app.get('/', function(req, res)
 {
-  res.send('Hello World!');
+  pg.connect(conString, function(err, client, done)
+    {
+        if(err)
+        {
+          return console.error('error fetching client from pool', err);
+        }
+        client.query('SELECT * FROM instructiontree', function(err, result)
+        {
+            //call `done()` to release the client back to the pool
+            done();
+            if(err)
+            {
+              return console.error('error running query', err);
+            }
+            res.send(result);
+        });
+    });
 });
 
 
