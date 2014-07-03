@@ -22,7 +22,7 @@ app.get('/', function(req, res)
             {
               return console.error('error running query', err);
             }
-            res.send(result.rows[0]);
+            res.send(result.rows);
         });
     });
 });
