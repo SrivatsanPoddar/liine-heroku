@@ -6,6 +6,11 @@ var conString = "postgres://ivaqkulwuyokvo:JBfCRSFIcaWoqRI_jE0dL36DnV@ec2-107-21
 
 app.use(logfmt.requestLogger());
 
+app.get('/', function(req, res))
+{
+    res.send('Welcome to safe-hollows');
+});
+
 app.get('/nodes', function(req, res)
 {
   pg.connect(conString, function(err, client, done)
