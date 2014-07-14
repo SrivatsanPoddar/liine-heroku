@@ -44,7 +44,7 @@ app.get('/:company_id/questions', function(req, res)
         {
             //call `done()` to release the client back to the pool
             console.log("Questions retrieved for company " + req.params.company_id + " with results:");
-            console.log(results.rows)
+            console.log(result.rows)
             done();
             if(err)
             {
