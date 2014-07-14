@@ -56,6 +56,30 @@ app.get('/:company_id/questions', function(req, res)
     });
 });
 
+app.post('/responses', function(req, res)
+{
+  pg.connect(conString, function(err, client, done)
+    {
+        if(err)
+        {
+          return console.error('error fetching client from pool', err);
+        }
+        client.query('INSERT INTO responses (question_id, response) VALUES (' + req.body.question_id + ',"' + req.body.response + '") RETURNING response_id', function(err, result)
+        {
+          if(err)
+          {
+            return console.error('error running query', err);
+          }
+          //call `done()` to release the client back to the pool
+          console.log("Response inserted with response_id:");
+          console.log(result);
+          done();
+
+          res.send(201);
+        });
+    });
+});
+
 app.get('/users', function(req, res)
 {
   res.send('Dummy User :(');
