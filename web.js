@@ -58,6 +58,8 @@ app.get('/:company_id/questions', function(req, res)
 
 app.post('/responses', function(req, res)
 {
+  console.log("Attempt to post new response with body:");
+  console.log(req.body);
   pg.connect(conString, function(err, client, done)
     {
         if(err)
