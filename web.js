@@ -3,8 +3,10 @@ var logfmt = require("logfmt");
 var app = express();
 var pg = require('pg');
 var conString = "postgres://ivaqkulwuyokvo:JBfCRSFIcaWoqRI_jE0dL36DnV@ec2-107-21-100-118.compute-1.amazonaws.com:5432/dbjkvhetm21oap?ssl=true";
+var bodyParser = require('body-parser').
 
 app.use(logfmt.requestLogger());
+app.use(bodyParser.json());
 
 app.get('/', function(req, res)
 {
@@ -59,7 +61,7 @@ app.get('/:company_id/questions', function(req, res)
 app.post('/responses', function(req, res)
 {
   console.log("Attempt to post new response with body:");
-  console.log(req.body);
+  console.log(req);
   pg.connect(conString, function(err, client, done)
     {
         if(err)
