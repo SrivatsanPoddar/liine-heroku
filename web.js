@@ -1,8 +1,8 @@
-var express = require("express")
+var express = require("express");
 var logfmt = require("logfmt");
 var app = express();
 var pg = require('pg');
-var conString = "postgres://ivaqkulwuyokvo:JBfCRSFIcaWoqRI_jE0dL36DnV@ec2-107-21-100-118.compute-1.amazonaws.com:5432/dbjkvhetm21oap";
+var conString = "postgres://ivaqkulwuyokvo:JBfCRSFIcaWoqRI_jE0dL36DnV@ec2-107-21-100-118.compute-1.amazonaws.com:5432/dbjkvhetm21oap?ssl=true";
 
 app.use(logfmt.requestLogger());
 
@@ -40,17 +40,18 @@ app.get('/:company_id/questions', function(req, res)
         {
           return console.error('error fetching client from pool', err);
         }
-        client.query('SELECT * FROM questions WHERE store_id=' + req.params.company_id, function(err, result)
+        client.query('SELECT * FROM questions WHERE company_id=' + req.params.company_id, function(err, result)
         {
-            //call `done()` to release the client back to the pool
-            console.log("Questions retrieved for company " + req.params.company_id + " with results:");
-            console.log(result.rows)
-            done();
-            if(err)
-            {
-              return console.error('error running query', err);
-            }
-            res.send(result.rows);
+          if(err)
+          {
+            return console.error('error running query', err);
+          }
+          //call `done()` to release the client back to the pool
+          console.log("Questions retrieved for company " + req.params.company_id + " with results:");
+          console.log(result.rows);
+          done();
+
+          res.send(result.rows);
         });
     });
 });
