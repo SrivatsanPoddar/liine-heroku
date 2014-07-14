@@ -3,7 +3,7 @@ var logfmt = require("logfmt");
 var app = express();
 var pg = require('pg');
 var conString = "postgres://ivaqkulwuyokvo:JBfCRSFIcaWoqRI_jE0dL36DnV@ec2-107-21-100-118.compute-1.amazonaws.com:5432/dbjkvhetm21oap?ssl=true";
-var bodyParser = require('body-parser').
+var bodyParser = require('body-parser');
 
 app.use(logfmt.requestLogger());
 app.use(bodyParser.json());
