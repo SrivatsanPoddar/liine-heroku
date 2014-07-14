@@ -19,7 +19,7 @@ app.get('/nodes', function(req, res)
         {
           return console.error('error fetching client from pool', err);
         }
-        client.query('SELECT * FROM instructiontree ORDER BY node_id', function(err, result)
+        client.query('SELECT * FROM instructiontree ORDER BY node_id;', function(err, result)
         {
             //call `done()` to release the client back to the pool
             done();
@@ -32,6 +32,28 @@ app.get('/nodes', function(req, res)
     });
 });
 
+app.get('/:company_id/questions', function(req, res)
+{
+  pg.connect(conString, function(err, client, done)
+    {
+        if(err)
+        {
+          return console.error('error fetching client from pool', err);
+        }
+        client.query('SELECT * FROM questions WHERE store_id=' + req.params.company_id, function(err, result)
+        {
+            //call `done()` to release the client back to the pool
+            console.log("Questions retrieved for company " + req.params.company_id + " with results:");
+            console.log(results.rows)
+            done();
+            if(err)
+            {
+              return console.error('error running query', err);
+            }
+            res.send(result.rows);
+        });
+    });
+});
 
 app.get('/users', function(req, res)
 {
