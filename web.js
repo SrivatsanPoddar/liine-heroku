@@ -68,7 +68,7 @@ app.post('/responses', function(req, res)
         {
           return console.error('error fetching client from pool', err);
         }
-        var queryString = "INSERT INTO responses (question_id, response) VALUES (" + req.body.question_id + ",'" + req.body.response + "') RETURNING response_id;";
+        var queryString = "INSERT INTO responses (question_id, response, device_id) VALUES (" + req.body.question_id + ",'" + req.body.response + "'," + req.body.device_id + ") RETURNING response_id;";
         console.log('Query String: ' + queryString);
         client.query(queryString, function(err, result)
         {
