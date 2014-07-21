@@ -7,10 +7,11 @@ var bodyParser = require('body-parser');
 
 app.use(logfmt.requestLogger());
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/app'));
 
 app.get('/', function(req, res)
 {
-    res.send('Welcome to safe-hollows');
+    res.send('./index.html');
 });
 
 app.get('/nodes', function(req, res)
