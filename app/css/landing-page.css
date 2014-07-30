@@ -31,13 +31,14 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../img/old-phone.jpg) no-repeat center center;
+    /*background-color: rgb(196,213,224);*/
+    background: url(../img/diagmonds.png) repeat center center;*/
     background-size: cover;
 }
 
 .intro-message {
     position: relative;
-    padding-top: 20%;
+    padding-top: 2%;
     padding-bottom: 20%;
 }
 
