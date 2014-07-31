@@ -4,14 +4,16 @@ var app = express();
 var pg = require('pg');
 var conString = "postgres://ivaqkulwuyokvo:JBfCRSFIcaWoqRI_jE0dL36DnV@ec2-107-21-100-118.compute-1.amazonaws.com:5432/dbjkvhetm21oap?ssl=true";
 var bodyParser = require('body-parser');
+var cors = require('cors');
 
 app.use(logfmt.requestLogger());
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/app'));
+app.use(cors());
 
 app.get('/', function(req, res)
 {
-    res.send('./index.html');
+    res.send('./build/index.html');
 });
 
 app.get('/nodes', function(req, res)
