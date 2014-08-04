@@ -1,5 +1,5 @@
 
-<html lang="en" ng-ap="liineApp">
+<html lang="en" ng-app="liineApp">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -12,7 +12,7 @@
     <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"/>
   </head>
-  <body>
+  <body ng-controller="HeaderController">
     <nav role="navigation" class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -20,28 +20,26 @@
         </div>
         <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#/about">About</a></li>
+            <li><a href="#/services">Services</a></li>
+            <li><a href="#/contact">Contact</a></li>
           </ul>
         </div>
       </div>
     </nav>
-    <div class="container">
-      <div ng-view="ng-view" class="fades"></div>
-    </div>
+    <div ng-view="ng-view"></div>
     <footer>
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
             <ul class="list-inline">
-              <li><a href="#home">Home</a></li>
+              <li><a href="#/home">Home</a></li>
               <li class="footer-menu-divider">⋅</li>
-              <li><a href="#about">About</a></li>
+              <li><a href="#/about">About</a></li>
               <li class="footer-menu-divider">⋅</li>
-              <li><a href="#services">Services</a></li>
+              <li><a href="#/services">Services</a></li>
               <li class="footer-menu-divider">⋅</li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="#/contact">Contact</a></li>
             </ul>
             <p class="copyright text-muted small">Copyright © Liine 2014. All Rights Reserved</p>
           </div>
@@ -49,7 +47,8 @@
       </div>
     </footer>
     <script src="js/jquery-1.11.0.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"> </script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-route.js"></script>
+    <script src="build/js/all.min.js"> </script>
   </body>
 </html>

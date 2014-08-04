@@ -1,4 +1,4 @@
-html(lang='en' ng-ap="liineApp")
+html(lang='en' ng-app='liineApp')
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
@@ -6,27 +6,13 @@ html(lang='en' ng-ap="liineApp")
     meta(name='description', content='')
     meta(name='author', content='')
     title Liine - Work with your Customers. 
-    //- Bootstrap Core CSS 
     link(href='/build/css/bootstrap.min.css', rel='stylesheet')
-
-    //- Custom CSS 
     link(href='/build/css/landing-page.css', rel='stylesheet')
-
-    //- Custom Fonts 
     link(href='font-awesome-4.1.0/css/font-awesome.min.css', rel='stylesheet', type='text/css')
     link(href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic', rel='stylesheet', type='text/css')
-
-    //- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries 
-
-    //- WARNING: Respond.js doesn't work if you view the page via file:// 
-    //- if lt IE 9
-    //- script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
-    //- script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
-  body
+  body(ng-controller="HeaderController")
     nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
       .container
-
-        //- Brand and toggle get grouped for better mobile display 
         .navbar-header
           button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
             span.sr-only Toggle navigation
@@ -34,44 +20,39 @@ html(lang='en' ng-ap="liineApp")
             span.icon-bar
             span.icon-bar
           a.navbar-brand(href='#') Liine
-
-        //- Collect the nav links, forms, and other content for toggling 
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           ul.nav.navbar-nav.navbar-right
             li
-              a(href='#') About
+              a(href='#/about') About
             li
-              a(href='#') Services
+              a(href='#/services') Services
             li
-              a(href='#') Contact
-
-
-    div.container
-      div.fades(ng-view)
-    //- Navigation 
-    
-   
-    //- Footer 
+              a(href='#/contact') Contact
+    div(ng-view)
     footer
       .container
         .row
           .col-lg-12
             ul.list-inline
               li
-                a(href='#home') Home
+                a(href='#/home') Home
               li.footer-menu-divider ⋅
               li
-                a(href='#about') About
+                a(href='#/about') About
               li.footer-menu-divider ⋅
               li
-                a(href='#services') Services
+                a(href='#/services') Services
               li.footer-menu-divider ⋅
               li
-                a(href='#contact') Contact
+                a(href='#/contact') Contact
             p.copyright.text-muted.small Copyright © Liine 2014. All Rights Reserved
 
     //- jQuery Version 1.11.0 
-    script(src='js/jquery-1.11.0.js')
-    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js")  
-    //- Bootstrap Core JavaScript 
-    script(src='js/bootstrap.min.js')
+    script(src="js/jquery-1.11.0.js")
+    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js")
+    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-route.js")
+    
+
+    //- All user JS files
+    script(src="build/js/all.min.js")  
+
