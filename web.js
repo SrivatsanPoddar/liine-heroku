@@ -5,19 +5,80 @@ var pg = require('pg');
 var conString = "postgres://ivaqkulwuyokvo:JBfCRSFIcaWoqRI_jE0dL36DnV@ec2-107-21-100-118.compute-1.amazonaws.com:5432/dbjkvhetm21oap?ssl=true";
 var bodyParser = require('body-parser');
 var cors = require('cors');
+var WebSocketServer = require('ws').Server;
+var http = require('http');
 
 app.use(logfmt.requestLogger());
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/app'));
 app.use(cors());
 
-app.get('/', function(req, res)
-{
-    res.send('./build/index.html');
+var port = Number(process.env.PORT || 5000);
+var server = http.createServer(app);
+server.listen(port);
+console.log("http server listening on %d", port);
+
+//Create websocket server
+var wss = new WebSocketServer({server: server, path:"/live"});
+console.log("websocket server created");
+var activeConnections = {};
+var index = 0;
+
+//Accept web-socket connections
+wss.on("connection", function(ws) {
+  activeConnections[index + ""]  = ws;
+  ws["myIndex"] = index + "";
+  console.log("websocket connection open with index: " + index);
+  index++;
+  console.log("# of Active Connections:" + Object.keys(activeConnections).length);
+  // var id = setInterval(function() {
+  //   ws.send(JSON.stringify(new Date()), function() {  });
+  // }, 1000);
+
+  
+  ws.on("message", function(data, flags) {
+    console.log("Received message: " + JSON.stringify(data));
+    for (var ind in activeConnections) {
+      activeConnections[ind].send(data);
+    }
+    //ws.send(data);
+    console.log("Sending data: " + JSON.stringify(data));
+  });
+
+  ws.on("close", function() {
+    console.log("websocket connection close");
+    delete activeConnections[ws["myIndex"]];
+    //clearInterval(id);
+  });
 });
 
-app.get('/nodes', function(req, res)
-{
+// //Handle web-sockets
+// wss.on("connection", function(ws) {
+//   var id = setInterval(function() {
+//     ws.send(JSON.stringify(new Date()), function() {  });
+//   }, 1000);
+
+//   console.log("websocket connection open");
+
+//   ws.on("close", function() {
+//     console.log("websocket connection close");
+//     clearInterval(id);
+//   });
+// });
+
+app.get('/', function(req, res) {
+    res.sendfile('./build/index.html');
+    // console.log("GEtting!");
+    // res.sendfile('./app/index.html');  //Test web-socket
+});
+
+app.get('/test', function(req, res) {
+    //res.sendfile('./build/index.html');
+    console.log("GEtting!");
+    res.sendfile('./app/index.html');  //Test web-socket
+});
+
+app.get('/nodes', function(req, res) {
   pg.connect(conString, function(err, client, done)
     {
         if(err)
@@ -37,8 +98,7 @@ app.get('/nodes', function(req, res)
     });
 });
 
-app.get('/:company_id/questions', function(req, res)
-{
+app.get('/:company_id/questions', function(req, res) {
   pg.connect(conString, function(err, client, done)
     {
         if(err)
@@ -61,8 +121,7 @@ app.get('/:company_id/questions', function(req, res)
     });
 });
 
-app.post('/responses', function(req, res)
-{
+app.post('/responses', function(req, res) {
   console.log("Attempt to post new response with body:");
   console.log(req);
   pg.connect(conString, function(err, client, done)
@@ -89,14 +148,7 @@ app.post('/responses', function(req, res)
     });
 });
 
-app.get('/users', function(req, res)
-{
+app.get('/users', function(req, res) {
   res.send('Dummy User :(');
 });
 
-var port = Number(process.env.PORT || 5000);
-
-app.listen(port, function()
-{
-  console.log("Listening on " + port);
-});

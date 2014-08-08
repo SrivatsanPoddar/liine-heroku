@@ -11,24 +11,25 @@ html(lang='en' ng-app='liineApp')
     link(href='font-awesome-4.1.0/css/font-awesome.min.css', rel='stylesheet', type='text/css')
     link(href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic', rel='stylesheet', type='text/css')
   body(ng-controller="HeaderController")
-    nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
-      .container
-        .navbar-header
-          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
-            span.sr-only Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          a.navbar-brand(href='#') Liine
-        #bs-example-navbar-collapse-1.collapse.navbar-collapse
-          ul.nav.navbar-nav.navbar-right
-            li
-              a(href='#/about') About
-            li
-              a(href='#/services') Services
-            li
-              a(href='#/contact') Contact
-    div(ng-view)
+    .content
+        nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
+          .container
+            .navbar-header
+              button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+              a.navbar-brand(href='#') Liine
+            #bs-example-navbar-collapse-1.collapse.navbar-collapse
+              ul.nav.navbar-nav.navbar-right
+                li
+                  a(href='#/about') About
+                li
+                  a(href='#/services') Services
+                li
+                  a(href='#/contact') Contact
+        div(ng-view)
     footer
       .container
         .row

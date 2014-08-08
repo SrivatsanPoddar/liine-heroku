@@ -21,6 +21,11 @@ h6 {
     font-weight: 700;
 }
 
+body { padding-top: 60px; }
+@media screen and (max-width: 768px) {
+    body { padding-top: 0px; }
+}
+
 .lead {
     font-size: 18px;
     font-weight: 400;

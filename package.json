@@ -17,7 +17,9 @@
     "express": "~4.4.5",
     "pg": "~3.3.0",
     "body-parser": "~1.4.3",
-    "cors": "~2.4.1"
+    "cors": "~2.4.1",
+    "ws": "~0.4.32",
+    "http": "0.0.0"
   },
   "devDependencies": {
     "gulp-rename": "~1.2.0",
@@ -32,6 +34,8 @@
     "gulp-jshint": "~1.8.2",
     "gulp-autoprefixer": "0.0.8",
     "gulp-imagemin": "~0.6.2",
-    "gulp": "~3.8.6"
+    "gulp": "~3.8.6",
+    "gulp-nodemon": "~1.0.4",
+    "gulp-jade": "~0.7.0"
   }
 }
