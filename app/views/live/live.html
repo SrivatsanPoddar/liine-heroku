@@ -1,0 +1,8 @@
+
+<div ng-controller="LiveController">
+  <div class="box text-center">
+    <p>Hello!</p>
+    <button ng-click="refreshMessages()" class="btn-primary">Refresh!</button>
+    <div ng-repeat="message in messages">{{message}}</div>
+  </div>
+</div>
