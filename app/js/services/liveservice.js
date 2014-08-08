@@ -5,7 +5,7 @@ angular.module('liineApp.services.live', [])
         function($rootScope) {
         	var Service = {};
             //var url = "ws://localhost:5000/live";
-            var url = "http://safe-hollows-9286.herokuapp.com/live"
+            var url = "ws://safe-hollows-9286.herokuapp.com/live"
             var ws;
             var messages = [];
             return {
