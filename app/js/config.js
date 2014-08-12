@@ -9,7 +9,7 @@ app.config(['$routeProvider','$locationProvider',
       $routeProvider
       .when('/',{templateUrl:'build/html/landing/landing.html'})
       .when('/contact',  { templateUrl: 'build/html/contact/contact.html' })
-      .when('/live', {templateUrl: 'build/html/live/live.html'})
+      .when('/live/:company_id', {templateUrl: 'build/html/live/live.html'})
       .otherwise(       { redirectTo: '/' });
       
     }]);

@@ -36,13 +36,45 @@ wss.on("connection", function(ws) {
   // }, 1000);
 
   
-  ws.on("message", function(data, flags) {
-    console.log("Received message: " + JSON.stringify(data));
-    for (var ind in activeConnections) {
-      activeConnections[ind].send(data);
+  ws.on("message", function(rawData, flags) {
+    console.log("Received message: " + JSON.stringify(rawData));
+    var receivedData = JSON.parse(rawData);
+    console.log(receivedData);
+
+    //Check to see if the message is from a company settings it's own ID
+    if (receivedData.hasOwnProperty("set_company_id")) {
+      ws.company_id = receivedData.set_company_id;
     }
-    //ws.send(data);
-    console.log("Sending data: " + JSON.stringify(data));
+
+    //Check to see if message is from a client and set it's target company
+    if (receivedData.hasOwnProperty("set_target_company_id")) {
+      ws.target_company_id = receivedData.set_target_company_id;
+    }
+
+    //If this socket is an identified company, send the message to all clients that specify this company as its target
+    if(ws.hasOwnProperty("company_id")) {
+      for (var ind in activeConnections) {
+          if (activeConnections[ind].target_company_id === ws.company_id) {
+            activeConnections[ind].send(rawData);
+          }
+      }
+      ws.send(rawData);  //Also send the message to itself
+      console.log("Sending data: " + JSON.stringify(rawData));
+    }
+
+    //If this socket has set a target company, send the message to the connections of this company
+    if(ws.hasOwnProperty("target_company_id")) {
+      for (var i in activeConnections) {
+          if (activeConnections[i].company_id === ws.target_company_id) {
+            activeConnections[i].send(rawData);
+          }
+      }
+      ws.send(rawData);
+      console.log("Sending data: " + JSON.stringify(rawData));
+    }
+
+   //ws.send(data);
+    //console.log("Sending data: " + JSON.stringify(data));
   });
 
   ws.on("close", function() {
@@ -50,6 +82,7 @@ wss.on("connection", function(ws) {
     delete activeConnections[ws["myIndex"]];
     //clearInterval(id);
   });
+
 });
 
 // //Handle web-sockets

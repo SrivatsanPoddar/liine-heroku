@@ -4,16 +4,16 @@ angular.module('liineApp.services.live', [])
     .factory('liveService', ['$rootScope',
         function($rootScope) {
         	var Service = {};
-            //var url = "ws://localhost:5000/live";
-            var url = "ws://safe-hollows-9286.herokuapp.com/live"
+            var url = "ws://localhost:5000/live";
+            //var url = "ws://safe-hollows-9286.herokuapp.com/live";
             var ws;
             var messages = [];
             return {
-            	init: function() {
+            	init: function(company_id) {
             		ws = new WebSocket(url);
             		ws.onopen = function () {
             			console.log("Connection Opened!");
-
+            			ws.send(JSON.stringify({set_company_id: company_id}));
             		};
 
             		ws.onclose = function () {
