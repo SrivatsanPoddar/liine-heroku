@@ -19,7 +19,8 @@
     "body-parser": "~1.4.3",
     "cors": "~2.4.1",
     "ws": "~0.4.32",
-    "http": "0.0.0"
+    "http": "0.0.0",
+    "twilio": "~1.6.0"
   },
   "devDependencies": {
     "gulp-rename": "~1.2.0",

@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var WebSocketServer = require('ws').Server;
 var http = require('http');
+var twilio = require('./js/twilio');
 
 app.use(logfmt.requestLogger());
 app.use(bodyParser.json());
@@ -185,3 +186,4 @@ app.get('/users', function(req, res) {
   res.send('Dummy User :(');
 });
 
+app.get('/requestCallToken',twilio.getCallToken);
