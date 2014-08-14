@@ -14,7 +14,7 @@ exports.getCallToken = function(req, res) {
 
 exports.getCallTokenIncoming = function(req, res) {
 	var capability = new twilio.Capability(accountSid, authToken);
-	capability.allowClientIncoming(req.params.company_id);
+	capability.allowClientIncoming(req.query.company_id);
 	res.send(201,{token: capability.generate()});
 };
 
