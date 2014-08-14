@@ -190,4 +190,4 @@ app.get('/requestCallToken',twilio.getCallToken);
 
 app.get('/requestCallTokenIncoming',twilio.getCallTokenIncoming);
 
-app.post('/twiml',twilio.returnTwiml);
+app.get('/twiml',twilio.returnTwiml);
