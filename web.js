@@ -187,3 +187,7 @@ app.get('/users', function(req, res) {
 });
 
 app.get('/requestCallToken',twilio.getCallToken);
+
+app.get('/requestCallTokenIncoming',twilio.getCallTokenIncoming);
+
+app.post('/twiml',twilio.returnTwiml);
