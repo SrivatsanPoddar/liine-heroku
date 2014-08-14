@@ -19,8 +19,9 @@ exports.getCallTokenIncoming = function(req, res) {
 };
 
 exports.returnTwiml = function (req, res) {
-	console.log("Twiml Requested with Request Parameters: " + JSON.stringify(req.params));
-	var company_id = req.params.To;
+	console.log("Twiml Requested with Request Parameters: ")
+	console.log(req.params);
+	var company_id = req.params;
 	//console.log("Found company_id: " + company_id);
 	//var company_id = (req.body.To).substring(8,req.body.To.length + 1);
 	console.log("Extracted company_id: " + company_id);
