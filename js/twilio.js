@@ -25,7 +25,7 @@ exports.returnTwiml = function (req, res) {
 	//console.log("Found company_id: " + company_id);
 	//var company_id = (req.body.To).substring(8,req.body.To.length + 1);
 	console.log("Extracted company_id: " + company_id);
-	var resp = new twilio.TwimlReponse();
+	var resp = new twilio.TwimlResponse();
 	resp.dial(function (node) {
 		node.client(company_id);
 	});
