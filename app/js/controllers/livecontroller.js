@@ -44,7 +44,7 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live'])
           });
 
           Twilio.Device.error(function(error) {
-            console.log(error.message + " for "  + e.connection);
+            console.log(error.message + " for "  + error.connection);
           });
 
 
