@@ -69,7 +69,7 @@ wss.on("connection", function(ws) {
     // }
 
     //If this socket has set a target company, send the message to the connections of this company
-    if(!receivedData.hasOwnProperty("target_role") && ws.hasOwnProperty("target_company_id")) {
+    if(receivedData.hasOwnProperty("set_target_company_id") && ws.hasOwnProperty("target_company_id")) {
       for (var i in activeConnections) {
           if (activeConnections[i].company_id === ws.target_company_id) {
             activeConnections[i].send(JSON.stringify(receivedData));

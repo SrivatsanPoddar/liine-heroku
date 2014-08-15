@@ -18,6 +18,9 @@ angular.module('liineApp.services.live', [])
             		ws.onopen = function () {
             			console.log("Connection Opened!");
             			ws.send(JSON.stringify({set_company_id: company_id}));
+            			setInterval(function() {
+            				ws.send("Ping from client");
+            			},20000)
             		};
 
             		ws.onclose = function () {
@@ -26,6 +29,7 @@ angular.module('liineApp.services.live', [])
 
             		ws.onerror = function(error) {
             			console.log("Error: " + error);
+            			clearInterval();
             		};
 
             		ws.onmessage = function(data) {
