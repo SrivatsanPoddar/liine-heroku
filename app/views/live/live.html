@@ -1,8 +1,12 @@
 
 <div ng-controller="LiveController">
   <div class="box text-center">
-    <p>Hello!</p>
-    <button ng-click="refreshMessages()" class="btn-primary">Refresh!</button>
-    <div ng-repeat="message in messages">{{message}}</div>
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-4">
+        <div ng-repeat="{key, value} in pendingConnections">
+          <button type="submit" ng-click="pair(value.senderIndex)" class="btn btn-default">{{value.callPath}}</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

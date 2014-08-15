@@ -59,14 +59,26 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live'])
 
 
       $scope.messages = liveService.getMessages();
+      $scope.pendingConnections = liveService.getPendingConnections();
+
       liveService.init($scope.company_id);
 
       $scope.refreshMessages = function () {
         $scope.messages = liveService.getMessages();
       };
 
+      $scope.refreshPendingConnections = function () { 
+        $scope.pendingConnections = liveService.getPendingConnections();
+      };
+
+      $scope.pair = function(senderIndex) {
+        console.log("Clicked to pair with caller with senderIndex: " + senderIndex);
+        var messageObject = {pair: senderIndex};
+      };
+
+
       $scope.sendMessage = function(message) {
-        console.log("Send Message Called!");
+        console.log("Clicked to send Message Called!");
         var messageObject = {message: message};
         liveService.send(messageObject);
       };

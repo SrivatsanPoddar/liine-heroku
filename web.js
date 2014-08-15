@@ -23,6 +23,8 @@ console.log("http server listening on %d", port);
 var wss = new WebSocketServer({server: server, path:"/live"});
 console.log("websocket server created");
 var activeConnections = {};
+var pairs = {};
+var pairsIndex = 0;
 var index = 0;
 
 //Accept web-socket connections
@@ -40,38 +42,64 @@ wss.on("connection", function(ws) {
   ws.on("message", function(rawData, flags) {
     console.log("Received message: " + JSON.stringify(rawData));
     var receivedData = JSON.parse(rawData);
+    receivedData.senderIndex = ws.myIndex;
     console.log(receivedData);
 
     //Check to see if the message is from a company settings it's own ID
     if (receivedData.hasOwnProperty("set_company_id")) {
       ws.company_id = receivedData.set_company_id;
+      console.log("Company ID Set to: " + ws.company_id);
     }
 
     //Check to see if message is from a client and set it's target company
     if (receivedData.hasOwnProperty("set_target_company_id")) {
       ws.target_company_id = receivedData.set_target_company_id;
+      console.log("Target Company ID set to: " + ws.target_company_id);
     }
 
-    //If this socket is an identified company, send the message to all clients that specify this company as its target
-    if(ws.hasOwnProperty("company_id")) {
-      for (var ind in activeConnections) {
-          if (activeConnections[ind].target_company_id === ws.company_id) {
-            activeConnections[ind].send(rawData);
-          }
-      }
-      ws.send(rawData);  //Also send the message to itself
-      console.log("Sending data: " + JSON.stringify(rawData));
-    }
+    // //If this socket is an identified company, send the message to all clients that specify this company as its target
+    // if(ws.hasOwnProperty("company_id")) {
+    //   for (var ind in activeConnections) {
+    //       if (activeConnections[ind].target_company_id === ws.company_id) {
+    //         activeConnections[ind].send(rawData);
+    //       }
+    //   }
+    //   ws.send(rawData);  //Also send the message to itself
+    //   console.log("Sending data: " + JSON.stringify(rawData));
+    // }
 
     //If this socket has set a target company, send the message to the connections of this company
     if(ws.hasOwnProperty("target_company_id")) {
       for (var i in activeConnections) {
           if (activeConnections[i].company_id === ws.target_company_id) {
-            activeConnections[i].send(rawData);
+            activeConnections[i].send(JSON.stringify(receivedData));
           }
       }
-      ws.send(rawData);
-      console.log("Sending data: " + JSON.stringify(rawData));
+      //ws.send(rawData);
+      console.log("Sending data: " + JSON.stringify(receivedData));
+    }
+
+    //If the message shows that the agent accepts a connection, then pair the agent to the caller 
+    if (receivedData.hasOwnProperty("pair")) {
+      var callerIndex = receivedData.pair;
+      pairs[pairsIndex + ""] = {agent: ws.myIndex, caller: activeConnections[callerIndex].myIndex, pairsIndex: pairsIndex};
+      receivedData.pairsIndex = pairsIndex;
+      console.log("Pair request received pairing agent index " + ws.myIndex + " with caller index " + activeConnections[callerIndex] + " at pairsIndex " + pairsIndex);
+      var callerWS = activeConnections[callerIndex];
+
+      //Send message to both caller and agent informing them of the pairing and their pairsIndex
+      callerWS.send(JSON.stringify(receivedData));
+      ws.send(JSON.stringify(receivedData));
+
+      pairsIndex = pairsIndex + 1;
+    }
+
+    //If an agent and caller are already pairs, then find the pair and send the message to the target
+    if (receivedData.hasOwnProperty("target_role")) {
+      console.log("Paired message received for pairsIndex " + receivedData.pairsIndex + " for target role: " + receivedData.target_role);
+      var targetIndex = (pairs[receivedData.pairsIndex + ""])[receivedData.target_role + ""];
+      activeConnections[targetIndex + ""].send(JSON.stringify(receivedData));
+      console.log("Sending paired message of: " + receivedData.message + " to: " + targetIndex);
     }
 
    //ws.send(data);
