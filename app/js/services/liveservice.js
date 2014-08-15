@@ -19,7 +19,7 @@ angular.module('liineApp.services.live', [])
             			console.log("Connection Opened!");
             			ws.send(JSON.stringify({set_company_id: company_id}));
             			setInterval(function() {
-            				ws.send("Ping from client");
+            				ws.send({message: "Ping from client"});
             			},20000)
             		};
 
