@@ -82,6 +82,7 @@ wss.on("connection", function(ws) {
     //If the message shows that the agent accepts a connection, then pair the agent to the caller 
     if (receivedData.hasOwnProperty("pair")) {
       var callerIndex = receivedData.pair;
+      //ERROR HERE
       pairs[pairsIndex + ""] = {agent: ws.myIndex, caller: activeConnections[callerIndex].myIndex, pairsIndex: pairsIndex};
       receivedData.pairsIndex = pairsIndex;
       console.log("Pair request received pairing agent index " + ws.myIndex + " with caller index " + activeConnections[callerIndex].myIndex + " at pairsIndex " + pairsIndex);
