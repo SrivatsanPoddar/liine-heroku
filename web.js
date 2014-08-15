@@ -69,7 +69,7 @@ wss.on("connection", function(ws) {
     // }
 
     //If this socket has set a target company, send the message to the connections of this company
-    if(ws.hasOwnProperty("target_company_id")) {
+    if(!receivedData.hasOwnProperty("target_role") && ws.hasOwnProperty("target_company_id")) {
       for (var i in activeConnections) {
           if (activeConnections[i].company_id === ws.target_company_id) {
             activeConnections[i].send(JSON.stringify(receivedData));
@@ -84,7 +84,7 @@ wss.on("connection", function(ws) {
       var callerIndex = receivedData.pair;
       pairs[pairsIndex + ""] = {agent: ws.myIndex, caller: activeConnections[callerIndex].myIndex, pairsIndex: pairsIndex};
       receivedData.pairsIndex = pairsIndex;
-      console.log("Pair request received pairing agent index " + ws.myIndex + " with caller index " + activeConnections[callerIndex] + " at pairsIndex " + pairsIndex);
+      console.log("Pair request received pairing agent index " + ws.myIndex + " with caller index " + activeConnections[callerIndex].myIndex + " at pairsIndex " + pairsIndex);
       var callerWS = activeConnections[callerIndex];
 
       //Send message to both caller and agent informing them of the pairing and their pairsIndex
@@ -184,8 +184,8 @@ app.get('/:company_id/questions', function(req, res) {
 });
 
 app.post('/responses', function(req, res) {
-  console.log("Attempt to post new response with body:");
-  console.log(req);
+  console.log("Attempt to post new response");
+  //console.log(req);
   pg.connect(conString, function(err, client, done)
     {
         if(err)

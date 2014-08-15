@@ -4,8 +4,13 @@ div(ng-controller="LiveController")
 			div.col-xs-4.col-xs-offset-4
 				div(ng-repeat="(senderIndex, callPath) in pendingConnections")
 					button.btn.btn-default(type="submit" ng-click="pair(senderIndex)") {{callPath}}
-				//- input.form-control(ng-model="message" type="text" placeholder="Enter message here...")
-				//- br
-				//- button.btn.btn-default(type="submit" ng-click="sendMessage(message)") Submit
+			| isConnected: {{isConnected}}
+			br
+			div.col-xs-4.col-xs-offset-4(ng-if="isConnected")
+				div(ng-repeat="message in messages") 
+					p {{message.message}}
+				input.form-control(ng-model="message" type="text" placeholder="Enter message here...")
+				br
+				button.btn.btn-default(type="submit" ng-click="sendMessage(message)") Submit
 
 

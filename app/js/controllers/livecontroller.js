@@ -60,6 +60,7 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live'])
 
       $scope.messages = liveService.getMessages();
       $scope.pendingConnections = liveService.getPendingConnections();
+      $scope.isConnected = liveService.isConnected();
 
       liveService.init($scope.company_id);
 
@@ -76,6 +77,12 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live'])
         var messageObject = {pair: senderIndex};
         liveService.send(messageObject);
       };
+
+      $scope.$watch(function() {return liveService.isConnected() }, 
+        function (newIsConnectedState) {
+          console.log("The agent-caller connection has changed!");
+          $scope.isConnected = newIsConnectedState;
+      });
 
 
       $scope.sendMessage = function(message) {

@@ -11,6 +11,7 @@ angular.module('liineApp.services.live', [])
             var pendingConnections = {};
             var index = 1;
             var pairsIndex = null;
+            var isConnected = false;
             return {
             	init: function(company_id) {
             		ws = new WebSocket(url);
@@ -45,8 +46,17 @@ angular.module('liineApp.services.live', [])
             			//If server responded with a pairsIndex after requesting to pair with caller, then store the pairsIndex
             			if(receivedData.hasOwnProperty('pair')) {
             				console.log("Pair request confirmed with pairsIndex: " + receivedData.pairsIndex);
-            				pairsIndex = receivedData.pairsIndex;
+            				$rootScope.$apply(function () {
+            					pairsIndex = receivedData.pairsIndex;
+            					isConnected = true;
+            				});
             			};
+
+            			if(receivedData.hasOwnProperty('target_role')) {
+            				$rootScope.$apply(function () {
+            					messages.push({message: receivedData.message});
+            				});
+            			}
 
             			// var receivedMessage = angular.fromJson(data.data).message;
             			// console.log("parsed message: " + receivedMessage);
@@ -65,7 +75,9 @@ angular.module('liineApp.services.live', [])
         		getPendingConnections: function () {
         			return pendingConnections;
         		},
-
+        		isConnected: function() {
+        			return isConnected;
+        		},
         		send: function(message) {
         			if (pairsIndex) {
         				message.pairsIndex = pairsIndex;
