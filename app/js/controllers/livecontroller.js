@@ -74,6 +74,7 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live'])
       $scope.pair = function(senderIndex) {
         console.log("Clicked to pair with caller with senderIndex: " + senderIndex);
         var messageObject = {pair: senderIndex};
+        liveService.send(messageObject);
       };
 
 
