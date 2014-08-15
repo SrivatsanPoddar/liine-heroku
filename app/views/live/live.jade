@@ -2,8 +2,8 @@ div(ng-controller="LiveController")
 	div.box.text-center
 		div.row
 			div.col-xs-4.col-xs-offset-4
-				div(ng-repeat="{key, value} in pendingConnections")
-					button.btn.btn-default(type="submit" ng-click="pair(value.senderIndex)") {{value.callPath}}
+				div(ng-repeat="(senderIndex, callPath) in pendingConnections")
+					button.btn.btn-default(type="submit" ng-click="pair(senderIndex)") {{callPath}}
 				//- input.form-control(ng-model="message" type="text" placeholder="Enter message here...")
 				//- br
 				//- button.btn.btn-default(type="submit" ng-click="sendMessage(message)") Submit
