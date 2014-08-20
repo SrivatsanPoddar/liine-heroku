@@ -92,6 +92,8 @@ wss.on("connection", function(ws) {
       callerWS.send(JSON.stringify(receivedData));
       ws.send(JSON.stringify(receivedData));
 
+      ws.currentPairIndex = pairsIndex;
+      callerWS.currentPairIndex = pairsIndex;
       pairsIndex = pairsIndex + 1;
     }
 
@@ -109,6 +111,28 @@ wss.on("connection", function(ws) {
 
   ws.on("close", function() {
     console.log("websocket connection close");
+    if (ws.hasOwnProperty("currentPairIndex")) {
+      var pairToRemove = pairs[ws.currentPairIndex];
+      delete activeConnections[pairToRemove.agent].currentPairIndex;
+      delete activeConnections[pairToRemove.caller].currentPairIndex;
+      delete pairs[ws.currentPairIndex];
+    }
+
+    //If the closed web-socket had a target company id, 
+    //then send a message alerting all listening agents
+    // from that company to remove from pending connections
+
+    if (ws.hasOwnProperty("target_company_id")) {
+      for (var i in activeConnections) {
+          if (activeConnections[i].company_id === ws.target_company_id) {
+            var closeMessage = {close_connection_with_sender_index: ws.myIndex};
+            activeConnections[i].send(JSON.stringify(closeMessage));
+          }
+      }
+      //ws.send(rawData);
+      console.log("Sending close message: " + JSON.stringify(closeMessage));
+    }
+
     delete activeConnections[ws["myIndex"]];
     //clearInterval(id);
   });

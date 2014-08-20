@@ -10,7 +10,7 @@ angular.module('liineApp.services.live', [])
             var messages = [];
             var pendingConnections = {};
             var index = 1;
-            var pairsIndex = null;
+            var pairsIndex = -1;
             var isConnected = false;
             return {
             	init: function(company_id) {
@@ -47,6 +47,17 @@ angular.module('liineApp.services.live', [])
 
             			};
 
+            			//If a caller's connection closes, remove from pending connections if contained in list
+            			if (receivedData.hasOwnProperty('close_connection_with_sender_index')) {
+            				console.log("Removing Pending Connection with senderIndex " + receivedData.close_connection_with_sender_index);
+            				$rootScope.$apply(function () {
+            					delete pendingConnections[receivedData.close_connection_with_sender_index + ""];
+            				});
+
+            			};
+
+
+            			// {close_connection_with_sender_index: ws.myIndex};
             			//If server responded with a pairsIndex after requesting to pair with caller, then store the pairsIndex
             			if(receivedData.hasOwnProperty('pair')) {
             				console.log("Pair request confirmed with pairsIndex: " + receivedData.pairsIndex);
@@ -83,7 +94,7 @@ angular.module('liineApp.services.live', [])
         			return isConnected;
         		},
         		send: function(message) {
-        			if (pairsIndex) {
+        			if (!(pairsIndex === -1)) {
         				message.pairsIndex = pairsIndex;
         				message.target_role = "caller";
         				console.log("Paired message of: " + message.message + ". being sent to pairsIndex:" + pairsIndex);
