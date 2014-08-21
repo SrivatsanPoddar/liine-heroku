@@ -24,8 +24,8 @@ var wss = new WebSocketServer({server: server, path:"/live"});
 console.log("websocket server created");
 var activeConnections = {};
 var pairs = {};
-var pairsIndex = 0;
-var index = 0;
+var pairsIndex = 1;
+var index = 1;
 
 //Accept web-socket connections
 wss.on("connection", function(ws) {
@@ -111,12 +111,7 @@ wss.on("connection", function(ws) {
 
   ws.on("close", function() {
     console.log("websocket connection close");
-    if (ws.hasOwnProperty("currentPairIndex")) {
-      var pairToRemove = pairs[ws.currentPairIndex];
-      delete activeConnections[pairToRemove.agent].currentPairIndex;
-      delete activeConnections[pairToRemove.caller].currentPairIndex;
-      delete pairs[ws.currentPairIndex];
-    }
+
 
     //If the closed web-socket had a target company id, 
     //then send a message alerting all listening agents
@@ -126,11 +121,21 @@ wss.on("connection", function(ws) {
       for (var i in activeConnections) {
           if (activeConnections[i].company_id === ws.target_company_id) {
             var closeMessage = {close_connection_with_sender_index: ws.myIndex};
+            if (ws.currentPairIndex) {
+              closeMessage.pairsIndex = ws.currentPairIndex;
+            }
             activeConnections[i].send(JSON.stringify(closeMessage));
           }
       }
       //ws.send(rawData);
       console.log("Sending close message: " + JSON.stringify(closeMessage));
+    }
+
+    if (ws.hasOwnProperty("currentPairIndex")) {
+      var pairToRemove = pairs[ws.currentPairIndex];
+      delete activeConnections[pairToRemove.agent].currentPairIndex;
+      delete activeConnections[pairToRemove.caller].currentPairIndex;
+      delete pairs[ws.currentPairIndex];
     }
 
     delete activeConnections[ws["myIndex"]];
