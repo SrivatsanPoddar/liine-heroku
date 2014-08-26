@@ -5,7 +5,6 @@ div(ng-controller="LiveController")
 			div(ng-repeat="(senderIndex, callPath) in pendingConnections")
 				button.btn.btn-default(type="submit" ng-click="pair(senderIndex)") {{callPath}}
 		div.col-xs-4.col-xs-offset-4(ng-if="isConnected")
-		//- div.col-xs-6.col-xs-offset-5(ng-if="1")
 			h3 Current Call
 			button.btn.btn-primary(type="submit" ng-click="sendRequest({request_format: 'edit_text', request_type: 'address', message: 'Enter Address Here:'})") Request Address
 			button.btn.btn-primary(type="submit" ng-click="sendRequest({request_format: 'edit_text', request_type: 'name', message: 'Enter Name Here:'})") Request Name
