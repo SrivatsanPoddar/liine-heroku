@@ -54,10 +54,19 @@ angular.module('liineApp.services.live', [])
             					delete pendingConnections[receivedData.close_connection_with_sender_index + ""];
             				});
 
+            				//If the disconnected socket was the paired caller, then reset pairsIndex and unset isConnected
+            				if (receivedData.hasOwnProperty('pairsIndex')) {
+            					if (receivedData.pairsIndex === pairsIndex) {
+            						$rootScope.$apply(function () {
+            							pairsIndex = -1;
+            							isConnected = false;
+            						});
+            					}
+            				}
+
             			};
 
 
-            			// {close_connection_with_sender_index: ws.myIndex};
             			//If server responded with a pairsIndex after requesting to pair with caller, then store the pairsIndex
             			if(receivedData.hasOwnProperty('pair')) {
             				console.log("Pair request confirmed with pairsIndex: " + receivedData.pairsIndex);

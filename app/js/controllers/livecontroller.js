@@ -91,4 +91,10 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live'])
         liveService.send(messageObject);
       };
 
+      $scope.sendRequest = function(request) {
+        console.log("Clicked to send Request of Type: " + request.request_type);
+        var requestObject = request;
+        liveService.send(requestObject);
+      };
+
     }]);

@@ -94,6 +94,20 @@ wss.on("connection", function(ws) {
 
       ws.currentPairIndex = pairsIndex;
       callerWS.currentPairIndex = pairsIndex;
+
+      //Close pending connection for all other callers of the target
+      for (var i in activeConnections) {
+        if (i !== callerIndex) {
+          if (activeConnections[i].company_id === ws.target_company_id) {
+            var closeMessage = {close_connection_with_sender_index: ws.myIndex};
+            if (ws.currentPairIndex) {
+              closeMessage.pairsIndex = ws.currentPairIndex;
+            }
+            activeConnections[i].send(JSON.stringify(closeMessage));
+          }
+        }
+      }
+
       pairsIndex = pairsIndex + 1;
     }
 
