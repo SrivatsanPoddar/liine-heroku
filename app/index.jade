@@ -7,6 +7,7 @@ html(lang='en' ng-app='liineApp')
     meta(name='author', content='')
     title Liine - Work with your Customers. 
     link(href='/build/css/bootstrap.min.css', rel='stylesheet')
+    link(href="/bower_components/toastr/toastr.min.css",  type="text/css", rel="stylesheet")
     link(href='/build/css/landing-page.css', rel='stylesheet')
     link(href='font-awesome-4.1.0/css/font-awesome.min.css', rel='stylesheet', type='text/css')
     link(href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic', rel='stylesheet', type='text/css')
@@ -30,6 +31,7 @@ html(lang='en' ng-app='liineApp')
                 li
                   a(href='#/contact') Contact
         div(ng-view)
+        br
     footer
       .container
         .row
@@ -49,11 +51,17 @@ html(lang='en' ng-app='liineApp')
             p.copyright.text-muted.small Copyright © Liine 2014. All Rights Reserved
 
     //- jQuery Version 1.11.0 
-    script(src="js/jquery-1.11.0.js")
-    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js")
-    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-route.js")
-    script(src="//static.twilio.com/libs/twiliojs/1.1/twilio.min.js")
+    script(type="text/javascript" src="js/jquery-1.11.0.js")
+    //- script(type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.1.6/ZeroClipboard.js")
+    
+    script(src="bower_components/toastr/toastr.min.js")
+    script(type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js")
+    script(type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-route.js")
+    script(type="text/javascript" src="//static.twilio.com/libs/twiliojs/1.1/twilio.min.js")
 
     //- All user JS files
-    script(src="build/js/all.min.js")  
+    script(type="text/javascript" src="build/js/all.min.js")
+
+    script(src="/bower_components/zeroclipboard/dist/ZeroClipboard.min.js")
+    script(src="/bower_components/ng-clip/src/ngClip.js")  
 
