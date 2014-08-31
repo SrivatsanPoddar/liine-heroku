@@ -1,7 +1,8 @@
 var PG = require('./knex');
 
 exports.addCall = function (req, res) {
-	console.log("Add call to call log called");
+	console.log("Add call to call log called with req body: ");
+	console.log(req.body);
 
 	var device_id = req.body.device_id;
 	var start_time = req.body.start_time;
