@@ -250,7 +250,7 @@ app.post('/responses', function(req, res) {
           console.log(result);
           done();
 
-          res.send(201, result + "");
+          res.send(201, result.rows[0].response_id + "");
         });
     });
 });
