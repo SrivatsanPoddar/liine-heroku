@@ -9,7 +9,14 @@ exports.addCall = function (req, res) {
 	var end_time = req.body.end_time;
 	var company_id = req.body.company_id;
 	var response_ids = req.body.response_ids;
-	var call_path = req.body.call_path;
+	var call_path_node = req.body.call_path;
+	var call_path = [];
+	//Convert call_path of type node[] to call_path of type int[] for D
+
+
+	for(var i = 0; i < call_path_node.length;i++) {
+	    call_path.push(call_path_node[i].node_id);
+	}
 
 	PG.knex('calls').insert(
 		{device_id: device_id, start_time: start_time, 
