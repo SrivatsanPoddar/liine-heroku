@@ -8,6 +8,7 @@ var cors = require('cors');
 var WebSocketServer = require('ws').Server;
 var http = require('http');
 var twilio = require('./js/twilio');
+var callLog = require('./js/callLog');
 
 app.use(logfmt.requestLogger());
 app.use(bodyParser.json());
@@ -249,7 +250,7 @@ app.post('/responses', function(req, res) {
           console.log(result);
           done();
 
-          res.send(201);
+          res.send(201, result + "");
         });
     });
 });
@@ -263,3 +264,5 @@ app.get('/requestCallToken',twilio.getCallToken);
 app.get('/requestCallTokenIncoming',twilio.getCallTokenIncoming);
 
 app.get('/twiml',twilio.returnTwiml);
+
+app.post('/call', callLog.addCall);
