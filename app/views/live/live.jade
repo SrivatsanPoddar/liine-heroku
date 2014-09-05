@@ -7,12 +7,18 @@ div(ng-controller="LiveController")
 					form.form-horizontal
 						.form-group
 							fieldset
-							legend Incoming Calls
+							legend Incoming Call Center
+							br
+							p(ng-if="pendingConnectionsSize() === 0") No Incoming Calls
 							div(ng-repeat="(senderIndex, callPath) in pendingConnections")
 								button.btn.btn-primary(type="submit" ng-click="pair(senderIndex)") {{callPath.callPath}}
 								br
-			.col-xs-5(ng-if="isConnected", style="padding-left:30px;padding-right:30px; border-left: 0px solid #ccc;background-color:rgb(236, 240, 241);border-radius:2px;box-shadow:-1px 2px 5px rgba(44, 37, 37, 0.35);")
-				div
+			.col-xs-5(style="padding-left:30px;padding-right:30px; border-left: 0px solid #ccc;background-color:rgb(236, 240, 241);border-radius:2px;box-shadow:-1px 2px 5px rgba(44, 37, 37, 0.35);")
+				div(ng-if="!isConnected")
+					br
+					h4.text-center Not Currently Connected
+					br
+				div(ng-show="isConnected")
 					form.form-horizontal
 						h4.text-center Current Call
 						.form-group.text-center(style="padding-top:0px; border-top: 1px solid #ccc;")
@@ -22,17 +28,18 @@ div(ng-controller="LiveController")
 								.col-lg-6
 									.row
 										br
-										button.btn.btn-default(type="submit" ng-click="sendRequest({request_format: 'edit_text', request_type: 'address', message: 'Enter Address Here:'})") Request Address
+										button.btn.btn-default(ng-click="sendRequest({request_format: 'edit_text', request_type: 'address', message: 'Enter Address Here:'})") Request Address
 									.row
 										br
-										button.btn.btn-default(type="submit" ng-click="sendRequest({request_format: 'edit_text', request_type: 'name', message: 'Enter Name Here:'})") Request Name
+										button.btn.btn-default(ng-click="sendRequest({request_format: 'edit_text', request_type: 'name', message: 'Enter Name Here:'})") Request Name
 								.col-lg-6
 									.row
 										br
-										button.btn.btn-default(type="submit" ng-click="sendRequest({request_format: 'edit_text', request_type: 'phone_number', message: 'Enter Phone Number Here:'})") Request Phone Number
+										button.btn.btn-default(ng-click="sendRequest({request_format: 'edit_text', request_type: 'phone_number', message: 'Enter Phone Number Here:'})") Request Phone Number
 									.row
 										br
-										button.btn.btn-default(type="submit" ng-click="sendRequest({request_format: 'edit_text', request_type: 'birthdate', message: 'Enter Birthdate Here:'})") Request Birthdate
+										button.btn.btn-default(ng-click="sendRequest({request_format: 'edit_text', request_type: 'birthdate', message: 'Enter Birthdate Here:'})") Request Birthdate
+					form#sendInfoForm.form-horizontal
 						.form-group(style="padding-top:0px; border-top: 1px solid #ccc;")
 							.row
 								.col-lg-12
@@ -41,20 +48,22 @@ div(ng-controller="LiveController")
 									br
 									.row
 										.col-lg-10
-											input#sendLink.form-control(ng-model='link_url', type='text', placeholder="URL, Phone #, Email, or Other here...", autocomplete='on', style='cursor: auto;')
+											input#sendLink.form-control(ng-model="info.link_url", type='text', placeholder="URL, Phone #, Email, or Other here...", autocomplete='on', style='cursor: auto;')
 									br
 									.row
 										.col-lg-10
-											input#sendLinkDescription.form-control(ng-model='link_description', type='text', placeholder="Description (optional)", autocomplete='on', style='cursor: auto;')
+											input#sendLinkDescription.form-control(ng-model="info.link_description", type='text', placeholder="Description (optional)", autocomplete='on', style='cursor: auto;')
 										.col-lg-2
-											button.btn.btn-primary.text-center(type="submit" ng-click="sendRequest({request_format: 'link', request_type: link_description, message: link_url})") Send
+											button#submitSendInfo.btn.btn-primary.text-center(ng-click="sendRequest({request_format: 'link', request_type: info.link_description, message: info.link_url});", type="submit") Send
+
+
 						.form-group(style="padding-top:0px; border-top: 1px solid #ccc;")
 							.row
 								.col-lg-12
 									.row.text-center
 										label.control-label.text-center(for='sendLink') Received Messages
 							.row
-								.col-lg-6
+								.col-lg-10
 									div(ng-repeat="message in messages")
 										//- div(ng-repeat="number in [1,2,3]")
 										br

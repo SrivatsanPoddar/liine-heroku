@@ -5,6 +5,10 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live'])
     function($scope, $window, liveService, $routeParams, $http, $document) {
       
       
+
+
+
+
         // main.js
         //var ZeroClipboard = $window.ZeroClipboard;
         // console.log("ZeroClipboard:");
@@ -102,6 +106,10 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live'])
       };
 
 
+      $scope.pendingConnectionsSize = function () {
+        console.log("Size of pendingConnections:", Object.keys($scope.pendingConnections).length);
+        return Object.keys($scope.pendingConnections).length;
+      }
 
       $scope.messages = liveService.getMessages();
       $scope.pendingConnections = liveService.getPendingConnections();
@@ -157,6 +165,12 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live'])
         console.log("Clicked to send Request of Type: " + request.request_type);
         var requestObject = request;
         liveService.send(requestObject);
+        if (request.request_format === 'link') {
+          console.log("Link formatss: " + $scope.info.link_url + " " + $scope.info.link_description);
+          $scope.info.link_url = '';
+          $scope.info.link_description = '';
+          angular.element('#sendLink').focus();
+        }
         //toastr.success("Requested Info From Caller");
       };
 

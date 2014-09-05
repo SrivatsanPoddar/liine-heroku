@@ -266,3 +266,5 @@ app.get('/requestCallTokenIncoming',twilio.getCallTokenIncoming);
 app.get('/twiml',twilio.returnTwiml);
 
 app.post('/call', callLog.addCall);
+
+app.get('/calls', callLog.getCalls);
