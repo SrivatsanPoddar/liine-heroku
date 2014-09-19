@@ -192,7 +192,7 @@ app.get('/nodes', function(req, res) {
         {
           return console.error('error fetching client from pool', err);
         }
-        client.query('SELECT * FROM instructiontree ORDER BY node_id;', function(err, result)
+        client.query('SELECT * FROM instructiontree ORDER BY display_text;', function(err, result)
         {
             //call `done()` to release the client back to the pool
             done();
