@@ -4,7 +4,7 @@ exports.getCalls = function(req, res) {
 	console.log("Get calls for device ID called");
 	var device_id = req.query.device_id;
 
-	PG.knex('calls').orderBy('start_time','desc').select().where('device_id',device_id).innerJoin('companies','calls.company_id','companies.company_id').then(function(result) {
+	PG.knex('calls').orderBy('start_time','desc').select().limit(15).where('device_id',device_id).innerJoin('companies','calls.company_id','companies.company_id').then(function(result) {
 		console.log('{"Calls": ' + JSON.stringify(result) + '}');	     
 		res.send(JSON.parse('{"Calls": ' + JSON.stringify(result) + '}'));
 	}).catch(function(error) {
