@@ -1,0 +1,35 @@
+//- link(rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
+link(rel="stylesheet",  href="/bower_components/angular-ui-tree/dist/angular-ui-tree.min.css")
+link(rel="stylesheet" href="/build/css/demo.css")
+
+div(ng-controller="IVRController")
+	br
+	.container
+		.row(ng-controller='IVRController')
+			.col-lg-12
+				script(id="items_renderer.html" type='text/ng-template')
+					div(ui-tree-handle='')
+							form.form-inline(role="form", style="margin-bottom: 0px;")
+								a.btn.btn-xs.tree-button(ng-show="!(!item.items || item.items.length == 0)" style="color:#000000", data-nodrag='', ng-click='toggle(this)')
+									span.glyphicon(ng-class='{"glyphicon-chevron-right": collapsed, "glyphicon-chevron-down": !collapsed}')
+								span(ng-show="!item.editing")
+									span {{item.title}}
+									span(ng-show="item.phone_number.length > 0", style="font-size:10px; font-weight:700;") : {{item.phone_number}}
+								span(ng-show="item.editing")
+									input.tree-form(type="text" class="form-control", placeholder="display text...", ng-model="item.title")
+									input.tree-form(type="text", ng-disabled="!(!item.items || item.items.length == 0)", class="form-control", placeholder="Phone Number" ng-model="item.phone_number")
+									button.btn.btn-default.btn-xs(type="submit" ng-click="endEdit(item)") Done
+								a.pull-right.btn.btn-xs.tree-button(style="color:#810A0A", data-nodrag='', ng-click='remove(this)')
+									span.glyphicon.glyphicon-remove
+								a.pull-right.btn.btn-xs.tree-button(ng-hide="item.phone_number.length > 0", data-nodrag='', ng-click='newSubItem(this)', style='color: #096D2D; margin-right: 8px;')
+									span.glyphicon.glyphicon-plus
+								a.pull-right.btn.btn-xs.tree-button(data-nodrag='', ng-click="editItem(item)", style='color: #375B88; margin-right: 8px;')
+									span.glyphicon.glyphicon-pencil
+					ol(ui-tree-nodes='options', ng-model='item.items', ng-class='{hidden: collapsed}')
+						li(ng-repeat='item in item.items', ui-tree-node='', ng-include='"items_renderer.html"')
+				div(ui-tree='options' id="tree-root")
+					ol(ui-tree-nodes='', ng-model='list')
+						li(ng-repeat='item in list', ui-tree-node='', ng-include='"items_renderer.html"')
+			.col-lg-6
+				h3 Full tree
+				pre.code {{ list | json }}     

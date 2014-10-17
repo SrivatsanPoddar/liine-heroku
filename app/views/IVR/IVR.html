@@ -1,0 +1,27 @@
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="/bower_components/angular-ui-tree/dist/angular-ui-tree.min.css"/>
+<link rel="stylesheet" href="/build/css/demo.css"/>
+<div ng-controller="IVRController"><br/>
+  <div class="container">
+    <div ng-controller="IVRController" class="row">
+      <div class="col-lg-12">
+        <script id="items_renderer" type="text/ng-template">
+          <div ui-tree-handle=""><a data-nodrag="" ng-click="toggle(this)" class="btn btn-success btn-xs"><span ng-class="{&quot;glyphicon-chevron-right&quot;: collapsed, &quot;glyphicon-chevron-down&quot;: !collapsed}" class="glyphicon"></span></a>{{item.title}}<a data-nodrag="" ng-click="remove(this)" class="pull-right btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a><a data-nodrag="" ng-click="newSubItem(this)" style="margin-right: 8px;" class="pull-right btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span></a></div>
+          <ol ui-tree-nodes="options" ng-model="item.items" ng-class="{hidden: collapsed}">
+            <li ng-repeat="item in item.items" ui-tree-node="" ng-include="&quot;items_renderer.html&quot;"></li>
+          </ol>
+        </script>
+        <div ui-tree="options">
+          <ol ui-tree-nodes="" ng-model="list">
+            <li ng-repeat="item in list" ui-tree-node="" ng-include="&quot;items_renderer.html&quot;"></li>
+          </ol>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <h3>Full tree</h3>
+        <pre class="code">{{ list | json }}     </pre>
+      </div>
+    </div>
+  </div>
+</div>

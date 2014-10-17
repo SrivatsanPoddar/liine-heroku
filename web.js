@@ -259,6 +259,8 @@ app.get('/users', function(req, res) {
   res.send('Dummy User :(');
 });
 
+
+
 app.get('/requestCallToken',twilio.getCallToken);
 
 app.get('/requestCallTokenIncoming',twilio.getCallTokenIncoming);
@@ -268,3 +270,7 @@ app.get('/twiml',twilio.returnTwiml);
 app.post('/call', callLog.addCall);
 
 app.get('/calls', callLog.getCalls);
+
+app.get('/IVR', function(req, res) {
+  res.sendfile('./app/index.html');
+});

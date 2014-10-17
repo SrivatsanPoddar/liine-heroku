@@ -4,6 +4,7 @@
 var app = angular.module('liineApp',
   [ 'liineApp.controllers.header',
     'liineApp.controllers.live',
+    'liineApp.controllers.IVR',
     'liineApp.config',
-    'ngRoute','ngClipboard']
+    'ngRoute','ngClipboard','ui.tree']
   );
