@@ -68,6 +68,10 @@ angular.module('liineApp.controllers.IVR', [])
         title: '(New Node)',
         items: []
       });
+      
+      if (scope.collapsed) {
+        scope.toggle();
+      }
     };
 
     var getRootNodesScope = function() {

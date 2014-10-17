@@ -6,7 +6,7 @@ div(ng-controller="IVRController")
 	br
 	.container
 		.row(ng-controller='IVRController')
-			.col-lg-12
+			.col-lg-6
 				script(id="items_renderer.html" type='text/ng-template')
 					div(ui-tree-handle='')
 							form.form-inline(role="form", style="margin-bottom: 0px;")
@@ -31,5 +31,4 @@ div(ng-controller="IVRController")
 					ol(ui-tree-nodes='', ng-model='list')
 						li(ng-repeat='item in list', ui-tree-node='', ng-include='"items_renderer.html"')
 			.col-lg-6
-				h3 Full tree
 				pre.code {{ list | json }}     
