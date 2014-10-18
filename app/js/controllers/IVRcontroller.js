@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('liineApp.controllers.IVR', [])
-  .controller('IVRController', ['$scope',
-    function($scope) {
+angular.module('liineApp.controllers.IVR', ['liineApp.services.IVR'])
+  .controller('IVRController', ['$scope','IVRservice',
+    function($scope, IVRservice) {
 
     $scope.list = [{
       "id": 1,
@@ -48,6 +48,30 @@ angular.module('liineApp.controllers.IVR', [])
         "items":[]}]
     }];
 
+    var company_id = 1;
+
+    $scope.getInstructionTree = function() {
+        IVRservice.get({company_id:company_id},function(instructionTree) {
+            console.log("Response from getting instruction tree:");
+            console.log(instructionTree);
+            $scope.list = instructionTree;
+        },function(errorResponse) {
+            console.log("Error getting instruction tree:");
+            console.log(errorResponse);
+        } );
+    };
+
+    $scope.saveInstructionTree = function() {
+
+      IVRservice.save([],{instruction_tree: $scope.list, company_id:company_id},function(value, responseHeader) {
+          console.log("Response from trying to update instruction tree:");
+          console.log(value);
+      },function(errorResponse) {
+          console.log("Error updating instruction tree:");
+          console.log(errorResponse);
+      } );
+    };
+
     $scope.selectedItem = {};
 
     $scope.options = {
@@ -68,7 +92,7 @@ angular.module('liineApp.controllers.IVR', [])
         title: '(New Node)',
         items: []
       });
-      
+
       if (scope.collapsed) {
         scope.toggle();
       }
@@ -85,7 +109,7 @@ angular.module('liineApp.controllers.IVR', [])
 
     $scope.editItem = function(item) {
       console.log("Editing");
-      item.editing = true;
+      item.editing = !item.editing;
     };
 
     $scope.endEdit = function(item) {

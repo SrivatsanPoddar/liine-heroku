@@ -9,6 +9,7 @@ var WebSocketServer = require('ws').Server;
 var http = require('http');
 var twilio = require('./js/twilio');
 var callLog = require('./js/callLog');
+var IVR = require('./js/IVR');
 
 app.use(logfmt.requestLogger());
 app.use(bodyParser.json());
@@ -274,3 +275,7 @@ app.get('/calls', callLog.getCalls);
 app.get('/IVR', function(req, res) {
   res.sendfile('./app/index.html');
 });
+
+app.get('/instructiontree', IVR.getInstructionTree);
+
+app.put('/instructiontree', IVR.saveInstructionTree);
