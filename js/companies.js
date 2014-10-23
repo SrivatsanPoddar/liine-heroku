@@ -46,6 +46,10 @@ exports.getCompetitorsAd = function(req, res) {
 
 	var subquery = PG.knex.raw('SELECT advertisement_url FROM companies WHERE ? = ANY(competitors)',this_company_id).then(function(result) {
 		console.log("The fetched competitors ad URL:");
+		if (result.rows.length === 0) {
+			res.send(201,{response:"NO_ADS"});
+			return;
+		}
 		var random_competitor_row = Math.floor((Math.random() * result.rows.length));
 		console.log(result.rows[random_competitor_row]);
 		res.send(201,{response: result.rows[random_competitor_row].advertisement_url});
