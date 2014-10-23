@@ -48,7 +48,7 @@ exports.getCompetitorsAd = function(req, res) {
 		console.log("The fetched competitors ad URL:");
 		var random_competitor_row = Math.floor((Math.random() * result.rows.length));
 		console.log(result.rows[random_competitor_row]);
-		res.send(201,result.rows[random_competitor_row].advertisement_url);
+		res.send(201,{response: result.rows[random_competitor_row].advertisement_url});
 	}).catch(function(error) {
 		console.error("Error getting competitors for company with company_id: " + this_company_id + ". The reported error: " + error);
 		res.send(500,"Error getting competitors");
