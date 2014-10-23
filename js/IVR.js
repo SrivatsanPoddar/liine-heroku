@@ -6,7 +6,8 @@ exports.getInstructionTree = function(req, res) {
 	PG.knex('companies').select('instruction_tree').where('company_id',company_id).then(function(result) {
 		console.log("Result of retrieving instruction tree:");
 		console.log(result);	     
-		res.send(result);
+		res.send(201,JSON.parse('{"instruction_tree": ' + JSON.stringify(result[0]) + '}'));
+
 	}).catch(function(error) {
 		console.error("Error retrieving instruction tree for company with company_id: " + company_id + ". The reported error: " + error);
 	});
@@ -17,7 +18,8 @@ exports.saveInstructionTree = function(req, res) {
 
 	var instruction_tree = req.body.instruction_tree;
 	var company_id = req.body.company_id;
-
+	console.log("instruction tree:");
+	console.log(instruction_tree);
 	PG.knex('companies').update('instruction_tree',instruction_tree).where('company_id',company_id).then(function(result) {
 		  console.log("Updated instruction tree: " + result);
 	      res.send(201, {result: result[0]});

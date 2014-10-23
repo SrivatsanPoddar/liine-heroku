@@ -1,9 +1,7 @@
 'use strict';
  
-angular.module('liineApp.services.gift', ['ngResource'])
+angular.module('liineApp.services.IVR', ['ngResource'])
     .factory('IVRservice', ['$resource',
         function($resource) {
-            return {
-                resource: $resource("/instructiontree")
-             };                 
-        }])
+            return $resource("/instructiontree");               
+        }]);

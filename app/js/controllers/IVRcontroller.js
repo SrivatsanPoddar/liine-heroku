@@ -4,57 +4,74 @@ angular.module('liineApp.controllers.IVR', ['liineApp.services.IVR'])
   .controller('IVRController', ['$scope','IVRservice',
     function($scope, IVRservice) {
 
+      $scope.treeOptions = {
+        beforeDrop: function(event) {
+          console.log("Before dropped!");
+          saveOldTree();
+          return true;
+        }
+      };
+
     $scope.list = [{
-      "id": 1,
-      "title": "Comcast",
-      "items": [
+      "display_text": "Comcast",
+      "children": [
 
-        {"id": 2,
-        "title": "Trouble with Service",
-        "items":[
+        {"display_text": "Trouble with Service",
+        "children":[
          
-          {"id": 21,
-          "title": "TV",
-          "items":[
-          {"id": 211,
-            "title": "Video-on-Demand",
+          {
+          "display_text": "TV",
+          "children":[
+          {
+            "display_text": "Video-on-Demand",
             "phone_number":"1(800)934-6489",
-            "items":[]},
-            {"id": 212,
-            "title": "Picture Quality",
+            "children":[]},
+            {
+            "display_text": "Picture Quality",
             "phone_number":"1(800)934-6489",
-            "items":[]},
-            {"id": 213,
-            "title": "Other",
+            "children":[]},
+            {
+            "display_text": "Other",
             "phone_number":"1(800)934-6489",
-            "items":[]}]},
-          {"id": 22,
-          "title": "Internet",
-            "phone_number":"1(800)934-6489",
-          "items":[]},
-          {"id": 23,
-          "title": "Phone",
-            "phone_number":"1(800)934-6489",
-          "items":[]}]},
+            "children":[]}]},
+          {
+          "display_text": "Internet",
+          "phone_number":"1(800)934-6489",
+          "children":[]},
+          {
+          "display_text": "Phone",
+          "phone_number":"1(800)934-6489",
+          "children":[]}]},
 
-        {"id": 3,
-        "title": "Billing",
+        {   "display_text": "Billing",
             "phone_number":"1(800)934-6489",
-        "items":[]},
+          "children":[]},
 
-        {"id": 4,
-        "title": "Add Services",
+        {             "display_text": "Add Services",
             "phone_number":"1(800)934-6489",
-        "items":[]}]
+        "children":[]}]
     }];
 
     var company_id = 1;
 
-    $scope.getInstructionTree = function() {
-        IVRservice.get({company_id:company_id},function(instructionTree) {
+    $scope.getInstructionTree = function(input_company_id) {
+        
+        if (input_company_id) {
+          company_id = input_company_id;
+        }
+
+        IVRservice.get({company_id:$scope.company_id},function(response) {
             console.log("Response from getting instruction tree:");
-            console.log(instructionTree);
-            $scope.list = instructionTree;
+            console.log(response);
+
+            if (response.instruction_tree.instruction_tree === null) {
+              $scope.list = [{"display_text": "(New Node)",
+                                children:[]}];
+            }
+            else {
+              $scope.list = response.instruction_tree.instruction_tree;
+            }
+
         },function(errorResponse) {
             console.log("Error getting instruction tree:");
             console.log(errorResponse);
@@ -62,7 +79,8 @@ angular.module('liineApp.controllers.IVR', ['liineApp.services.IVR'])
     };
 
     $scope.saveInstructionTree = function() {
-
+      $scope.itemBeingEdited.editing = false;
+      console.log("Trying to save...");
       IVRservice.save([],{instruction_tree: $scope.list, company_id:company_id},function(value, responseHeader) {
           console.log("Response from trying to update instruction tree:");
           console.log(value);
@@ -72,12 +90,25 @@ angular.module('liineApp.controllers.IVR', ['liineApp.services.IVR'])
       } );
     };
 
-    $scope.selectedItem = {};
+    $scope.itemBeingEdited = {};
+    $scope.oldLists = [];
 
-    $scope.options = {
+
+    $scope.undo = function() {
+      $scope.list = $scope.oldLists.pop();
     };
 
-    $scope.remove = function(scope) {
+    var saveOldTree = function () {
+      console.log("Save tree called");
+       
+       var oldListToAdd = angular.copy($scope.list);
+        console.log(oldListToAdd)
+       $scope.oldLists.push(oldListToAdd);
+    };
+
+    $scope.removeItem = function(scope) {
+      console.log("Remove called");
+      saveOldTree();
       scope.remove();
     };
 
@@ -86,13 +117,17 @@ angular.module('liineApp.controllers.IVR', ['liineApp.services.IVR'])
     };
 
     $scope.newSubItem = function(scope) {
+      saveOldTree();
       var nodeData = scope.$modelValue;
-      nodeData.items.push({
-        id: nodeData.id * 10 + nodeData.items.length,
-        title: '(New Node)',
-        items: []
-      });
 
+      var newItem = {
+        display_text: '(New Node)',
+        children: [],
+        editing: false,
+      };
+
+      nodeData.children.push(newItem);
+      $scope.editItem(newItem);
       if (scope.collapsed) {
         scope.toggle();
       }
@@ -108,12 +143,18 @@ angular.module('liineApp.controllers.IVR', ['liineApp.services.IVR'])
     };
 
     $scope.editItem = function(item) {
-      console.log("Editing");
-      item.editing = !item.editing;
+      saveOldTree();
+      $scope.itemBeingEdited.editing = !$scope.itemBeingEdited.editing;
+      item.editing = true;
+      $scope.itemBeingEdited = item;
+      
+
     };
 
     $scope.endEdit = function(item) {
+      $scope.itemBeingEdited = {};
       item.editing = false;
+
     };
 
     //$scope.collapseAll();

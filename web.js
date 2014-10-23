@@ -10,6 +10,7 @@ var http = require('http');
 var twilio = require('./js/twilio');
 var callLog = require('./js/callLog');
 var IVR = require('./js/IVR');
+var companies = require('./js/companies')
 
 app.use(logfmt.requestLogger());
 app.use(bodyParser.json());
@@ -219,12 +220,27 @@ app.get('/:company_id/questions', function(req, res) {
           {
             return console.error('error running query', err);
           }
-          //call `done()` to release the client back to the pool
-          console.log("Questions retrieved for company " + req.params.company_id + " with results:");
-          console.log(result.rows);
-          done();
 
-          res.send(result.rows);
+          //If no normal questions, then send standard Diial question
+          if (result.rows.length === 0) {
+            client.query('SELECT * FROM questions WHERE company_id=0', function(err, result) {
+              if (err) {
+                return console.error('Error getting standard question');
+              }
+
+              done();
+              res.send(result.rows);
+              return;
+            });
+          }
+          else {
+            //call `done()` to release the client back to the pool
+            console.log("Questions retrieved for company " + req.params.company_id + " with results:");
+            console.log(result.rows);
+            done();
+
+            res.send(result.rows);
+          }
         });
     });
 });
@@ -278,4 +294,12 @@ app.get('/IVR', function(req, res) {
 
 app.get('/instructiontree', IVR.getInstructionTree);
 
-app.put('/instructiontree', IVR.saveInstructionTree);
+app.post('/instructiontree', IVR.saveInstructionTree);
+
+app.get('/competitors',companies.getCompetitors);
+
+app.get('/competitorsAd',companies.getCompetitorsAd);
+
+app.get('/specifiedCompetitors',companies.getSpecifiedCompetitors);
+
+app.post('/specifiedCompetitors',companies.setSpecifiedCompetitors);

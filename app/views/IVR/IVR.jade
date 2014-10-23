@@ -4,32 +4,44 @@ link(rel="stylesheet" href="/build/css/demo.css")
 
 div(ng-controller="IVRController")
 	br
-	.container
-		.row(ng-controller='IVRController')
+	.container(ng-controller='IVRController')
+		.row
 			.col-lg-8
-				button.btn-default(ng-click="getInstructionTree()") Reload
-				button.btn-default(ng-click="saveInstructionTree()") Save
+					.row
+						.col-lg-6
+							form.form-inline(role="form")
+								input.form-control(type="text", placeholder="Enter Company ID", ng-model="company_id", style="height:35px;") 
+								| &nbsp;
+								button.btn.btn-sm.btn-primary(type="submit" ng-click="getInstructionTree(company_id)") Load
+						.col-lg-6
+							form.form-inline(role="form")
+								button.btn.btn-primary.btn-sm.pull-right(title="Undo" ng-click="undo()", ng-disabled="oldLists.length === 0")
+									i.fa.fa-undo(style="font-size:18px;")
+								button.btn.btn-primary.btn-sm.pull-right(ng-click="saveInstructionTree()") Save Changes
+								button.btn.btn-primary.btn-sm.pull-right(ng-click="getInstructionTree()") Discard Changes
+		.row
+			.col-lg-8
 				script(id="items_renderer.html" type='text/ng-template')
 					div(ui-tree-handle='')
 							form.form-inline(role="form",  style="margin-bottom: 0px;")
-								a.btn.btn-xs.tree-button(title="Expand/Collapse Node" ng-show="!(!item.items || item.items.length == 0)" style="color:#000000", data-nodrag='', ng-click='toggle(this)')
+								a.btn.btn-xs.tree-button(title="Expand/Collapse Node" ng-show="!(!item.children || item.children.length == 0)" style="color:#000000", data-nodrag='', ng-click='toggle(this)')
 									span.glyphicon(ng-class='{"glyphicon-chevron-right": collapsed, "glyphicon-chevron-down": !collapsed}')
 								span(ng-show="!item.editing" )
-									span {{item.title}}
+									span {{item.display_text}}
 									span(ng-show="item.phone_number.length > 0", style="font-size:10px; font-weight:700;") : {{item.phone_number}}
 								span(ng-show="item.editing")
-									input.tree-form(type="text" class="form-control", placeholder="display text...", ng-model="item.title")
-									input.tree-form(type="text", ng-disabled="!(!item.items || item.items.length == 0)", class="form-control", placeholder="Phone Number" ng-model="item.phone_number")
+									input.tree-form(type="text" class="form-control", placeholder="display text...", ng-model="item.display_text" to-focus="{{item.editing}}")
+									input.tree-form(type="text", ng-disabled="!(!item.children || item.children.length == 0)", class="form-control", placeholder="Phone Number" ng-model="item.phone_number")
 									button.btn.btn-default.btn-xs(type="submit" ng-click="endEdit(item)") Done
-								a.pull-right.btn.btn-xs.tree-button(title="Remove Node + Children" style="color:#810A0A", data-nodrag='', ng-click='remove(this)')
+								a.pull-right.btn.btn-xs.tree-button(title="Remove Node + Children" style="color:#810A0A", data-nodrag='', ng-click='removeItem(this)')
 									span.glyphicon.glyphicon-remove
 								a.pull-right.btn.btn-xs.tree-button(title="Add Child Node" ng-hide="item.phone_number.length > 0", data-nodrag='', ng-click='newSubItem(this)', style='color: #096D2D; margin-right: 8px;')
 									span.glyphicon.glyphicon-plus
 								a.pull-right.btn.btn-xs.tree-button(title="Edit Node" data-nodrag='', ng-click="editItem(item)", style='color: #375B88; margin-right: 8px;')
 									span.glyphicon.glyphicon-pencil
-					ol(ui-tree-nodes='options', ng-model='item.items', ng-class='{hidden: collapsed}')
-						li(ng-repeat='item in item.items', ui-tree-node='', ng-include='"items_renderer.html"')
-				div(ui-tree='options' id="tree-root")
+					ol(ui-tree-nodes='treeOptions', ng-model='item.children', ng-class='{hidden: collapsed}')
+						li(ng-repeat='item in item.children', ui-tree-node='', ng-include='"items_renderer.html"')
+				div(ui-tree='treeOptions' id="tree-root")
 					ol(ui-tree-nodes='', ng-model='list')
 						li(ng-repeat='item in list', ui-tree-node='', ng-include='"items_renderer.html"')
 			.col-lg-4

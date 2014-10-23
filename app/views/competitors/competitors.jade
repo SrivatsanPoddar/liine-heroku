@@ -1,0 +1,50 @@
+div(ng-controller="CompetitorController")
+	br
+	.container
+		.row
+			.col-lg-12
+					.row
+						.col-lg-12.text-center
+							form.form-inline(role="form")
+								input.form-control(type="text", placeholder="Enter Company ID", ng-model="company_id", style="height:35px;") 
+								| &nbsp;
+								button.btn.btn-sm.btn-primary(type="submit" ng-click="getCompetitors(company_id)") Load
+								button.btn.btn-sm.btn-primary(type="submit" ng-click="saveCompetitors(company_id)") Save
+						br
+						.col-lg-6.text-center
+							h4 Company Directory
+							.row
+								.col-lg-12
+									input(ng-model="searchText" placeholder="Search for companies...")
+							.row
+								br
+								.col-lg-12
+									table.competitor-table.table-striped.table-hover.text-center(style="margin: 0 auto;float: none;")
+										tr
+											th Name
+											th Add/Remove
+										tr(ng-repeat="company in companies | filter:searchText | limitTo: 10")
+											td {{company.company_name}}
+											td.btn.btn-xs(title="Add Competitor", ng-hide="isCurrentCompetitor(company.company_id)", ng-click='addCompetitor(company.company_id)', style='color: #096D2D;')
+												span.glyphicon.glyphicon-plus
+											td.btn.btn-xs(title="Remove Competitor", ng-show="isCurrentCompetitor(company.company_id)", ng-click='removeCompetitor(company.company_id)', style='color: #6D0909;')
+												span.glyphicon.glyphicon-minus
+									| use search bar for more companies...
+						.col-lg-6.text-center
+							h4 Competitors
+							br
+							br
+							table.competitor-table.table-striped.table-hover.text-center(style="margin: 0 auto;float: none;")
+								tr
+									th Name
+									th Remove
+								tr(ng-repeat="(competitor_id, company_name) in competitors")
+									td {{company_name}}
+									td.btn.btn-xs(title="Remove Competitor", ng-click='removeCompetitor(competitor_id)', style='color: #6D0909;')
+										span.glyphicon.glyphicon-minus
+						//- .col-lg-6
+						//- 	form.form-inline(role="form")
+						//- 		button.btn.btn-primary.btn-sm.pull-right(title="Undo" ng-click="undo()", ng-disabled="oldLists.length === 0")
+						//- 			i.fa.fa-undo(style="font-size:18px;")
+						//- 		button.btn.btn-primary.btn-sm.pull-right(ng-click="saveInstructionTree()") Save Changes
+						//- 		button.btn.btn-primary.btn-sm.pull-right(ng-click="getInstructionTree()") Discard Changes

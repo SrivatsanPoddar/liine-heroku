@@ -6,6 +6,9 @@
 
 
 /*User Added CSS*/
+.competitor-table td {
+    padding: 6px;
+}
 
 .clipboard.zeroclipboard-is-hover {
     color: #ffffff;
@@ -36,6 +39,7 @@
   background-color: rgb(236, 240, 241);
 
 }
+
 
 /*Finish User Added CSS*/
 
