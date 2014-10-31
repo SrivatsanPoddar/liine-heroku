@@ -6,6 +6,7 @@ var app = angular.module('liineApp',
     'liineApp.controllers.live',
     'liineApp.controllers.IVR',
     'liineApp.controllers.competitor',
+    'liineApp.controllers.customize',
     'liineApp.config',
     'liineApp.directives.toFocus',
     'ngRoute','ngClipboard','ui.tree']

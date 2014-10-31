@@ -18,7 +18,6 @@
 }
 
 .clipboard.zeroclipboard-is-active {
-    -webkit-box-shadow: none;
     box-shadow: none;
     background-image: none;
     color: #ffffff;

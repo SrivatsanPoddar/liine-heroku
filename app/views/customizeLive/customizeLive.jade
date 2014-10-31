@@ -1,0 +1,17 @@
+div(ng-controller="CustomizeController")
+	br
+	.container
+		.row
+			.col-lg-12
+				form.form-inline(role="form")
+					input.form-control(type="text", placeholder="Enter Company ID", ng-model="company_id", style="height:35px;") 
+					| &nbsp;
+					button.btn.btn-sm.btn-primary(type="submit" ng-click="getCompetitors(company_id)") Load
+					button.btn.btn-sm.btn-primary(type="submit" ng-click="saveCompetitors(company_id)") Saveh4 Company Directory
+		.row
+			.col-lg-12
+				input(ng-model="newImageURL" placeholder="Image URL...")
+		.row
+			br
+			.col-lg-12
+					div(ng-repeat="image in images")

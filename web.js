@@ -10,7 +10,9 @@ var http = require('http');
 var twilio = require('./js/twilio');
 var callLog = require('./js/callLog');
 var IVR = require('./js/IVR');
-var companies = require('./js/companies')
+var companies = require('./js/companies');
+var customizeCallCenter = require('./js/customizeCallCenter');
+
 
 app.use(logfmt.requestLogger());
 app.use(bodyParser.json());
@@ -303,3 +305,7 @@ app.get('/competitorsAd',companies.getCompetitorsAd);
 app.get('/specifiedCompetitors',companies.getSpecifiedCompetitors);
 
 app.post('/specifiedCompetitors',companies.setSpecifiedCompetitors);
+
+app.get('/customImages',customizeCallCenter.getCustomImages);
+
+app.post('/customImages',customizeCallCenter.setCustomImages);
