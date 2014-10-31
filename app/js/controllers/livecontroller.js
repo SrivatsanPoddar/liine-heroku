@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('liineApp.controllers.live', ['liineApp.services.live'])
-  .controller('LiveController', ['$scope','$window','liveService', '$routeParams','$http', '$document',
-    function($scope, $window, liveService, $routeParams, $http, $document) {
+angular.module('liineApp.controllers.live', ['liineApp.services.live','liineApp.services.customize'])
+  .controller('LiveController', ['$scope','$window','liveService', '$routeParams','$http', '$document','customizeService',
+    function($scope, $window, liveService, $routeParams, $http, $document, customizeService) {
       
       
 
@@ -52,6 +52,7 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live'])
 
       var params = $routeParams;
       $scope.company_id = params.company_id;
+      $scope.info = {};
 
       var Twilio = $window.Twilio;
       //var url = "http://localhost:5000/requestCallTokenIncoming";
@@ -104,6 +105,7 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live'])
       $scope.disconnect = function () {
         Twilio.Device.disconnectAll();
       };
+
 
 
       $scope.pendingConnectionsSize = function () {
@@ -183,6 +185,32 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live'])
       $scope.showToast = function(textToToast) {
         toastr.success("Copied '" + textToToast + "' to Clipboard!");
         console.log("Show Toast Clicked with:" + textToToast);
+      };
+
+
+      //Get images for image choosing modal
+      $scope.image_urls = [];
+
+      $scope.getImages = function() {
+        customizeService.get({company_id:$scope.company_id},function(response) {
+            console.log("Response from getting images:");
+            console.log(response);
+            $scope.image_urls = [];
+            if (response.image_urls !== null) {
+              $scope.image_urls = response.image_urls;
+            }
+
+        },function(errorResponse) {
+            console.log("Error getting competitors:");
+            console.log(errorResponse);
+        } );
+      };
+      $scope.getImages();
+
+      $scope.sendImageURL = function(url) {
+        console.log("Sending image url:", url);
+        $scope.info.link_url = url;
+        $scope.sendRequest({request_format: 'link', request_type: '', message: $scope.info.link_url});
       };
 
     }]);

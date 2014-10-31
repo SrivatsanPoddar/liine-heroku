@@ -6,12 +6,17 @@ div(ng-controller="CustomizeController")
 				form.form-inline(role="form")
 					input.form-control(type="text", placeholder="Enter Company ID", ng-model="company_id", style="height:35px;") 
 					| &nbsp;
-					button.btn.btn-sm.btn-primary(type="submit" ng-click="getCompetitors(company_id)") Load
-					button.btn.btn-sm.btn-primary(type="submit" ng-click="saveCompetitors(company_id)") Saveh4 Company Directory
+					button.btn.btn-sm.btn-primary(type="submit" ng-click="getImages(company_id)") Load &nbsp
+					button.btn.btn-sm.btn-primary(type="submit" ng-click="saveImages(company_id)") Save
 		.row
 			.col-lg-12
-				input(ng-model="newImageURL" placeholder="Image URL...")
+				form.form-inline(role="form")
+					input.form-control(type="text" style="height:35px;" ng-model="newImageURL" placeholder="Image URL...")
+					button.btn.btn-sm.btn-primary(type="Add" ng-click="image_urls.push(newImageURL)") Add
 		.row
 			br
 			.col-lg-12
-					div(ng-repeat="image in images")
+				.row
+					div(ng-repeat="image_url in image_urls")
+						.col-lg-2
+							img.img-thumbnail(ng-src="{{image_url}}" style="max-height:250px;")

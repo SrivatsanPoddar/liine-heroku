@@ -49,6 +49,25 @@ div(ng-controller="LiveController")
 									.row
 										.col-lg-10
 											input#sendLink.form-control(ng-model="info.link_url", type='text', placeholder="URL, Phone #, Email, or Other here...", autocomplete='on', style='cursor: auto;')
+										.col-log-1
+											button.btn.btn-primary.text-center(type="button" data-toggle="modal" data-target="#imageModal")
+												span.glyphicon.glyphicon-pencil
+									div.modal.fade(id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true")
+										div.modal-dialog
+											div.modal-content
+												div.modal-header
+													button.close(type="button" data-dismiss="modal")
+														span(aria-hidden="true")&times;
+													h4.modal-title Choose An Image to Send
+												div.modal-body
+													.row
+														div(ng-repeat="url in image_urls")
+															.col-lg-2
+																img.img-thumbnail(ng-src="{{url}}" ng-click="sendImageURL(url)" data-dismiss="modal" style="max-height:150px;")
+													.row
+														.col-lg-12
+															p Add more images in the customize page
+
 									br
 									.row
 										.col-lg-10

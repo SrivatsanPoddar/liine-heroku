@@ -12,6 +12,7 @@ app.config(['$routeProvider','$locationProvider','ngClipProvider',
       .when('/live/:company_id', {templateUrl: 'build/html/live/live.html'})
       .when('/competitors', {templateUrl: 'build/html/competitors/competitors.html'})
       .when('/ivr', {templateUrl: 'build/html/IVR/IVR.html'})
+      .when('/customize', {templateUrl: 'build/html/customizeLive/customizeLive.html'})
       .otherwise(       { redirectTo: '/' });
 
       ngClipProvider.setPath('bower_components/zeroclipboard/dist/ZeroClipboard.swf');
