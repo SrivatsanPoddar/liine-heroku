@@ -27,3 +27,19 @@ exports.saveInstructionTree = function(req, res) {
 		console.error("Error updating instruction tree for company with company_id: " + company_id + ". The reported error: " + error);
 	});
 };
+
+exports.addJSONtree = function(req, res) {
+
+	var instruction_tree = req.body.node;
+	console.log("Instruction Tree:");
+	console.log(instruction_tree);
+	
+	var company_id = req.body.node.company_id;
+	PG.knex('companies').update('instruction_tree', instruction_tree).where('company_id', company_id).then(function(result) {
+		console.log("Successfully added JSON Tree");
+		res.send(201,{response:result});
+	}).catch(function(err) {
+		console.err("Error adding JSON tree", err);
+		res.send(500,"Error adding JSON tree: " + err);
+	});
+}

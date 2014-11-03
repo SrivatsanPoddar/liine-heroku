@@ -298,6 +298,8 @@ app.get('/instructiontree', IVR.getInstructionTree);
 
 app.post('/instructiontree', IVR.saveInstructionTree);
 
+app.post('/addJSONtree',IVR.addJSONtree);
+
 app.get('/competitors',companies.getCompetitors);
 
 app.get('/competitorsAd',companies.getCompetitorsAd);
@@ -309,3 +311,4 @@ app.post('/specifiedCompetitors',companies.setSpecifiedCompetitors);
 app.get('/customImages',customizeCallCenter.getCustomImages);
 
 app.post('/customImages',customizeCallCenter.setCustomImages);
+
