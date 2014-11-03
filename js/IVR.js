@@ -30,11 +30,11 @@ exports.saveInstructionTree = function(req, res) {
 
 exports.addJSONtree = function(req, res) {
 
-	var instruction_tree = req.body.node;
+	var instruction_tree = req.body;
 	console.log("Instruction Tree:");
 	console.log(instruction_tree);
-	
-	var company_id = req.body.node.company_id;
+
+	var company_id = instruction_tree.company_id;
 	PG.knex('companies').update('instruction_tree', instruction_tree).where('company_id', company_id).then(function(result) {
 		console.log("Successfully added JSON Tree");
 		res.send(201,{response:result});
