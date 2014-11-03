@@ -33,9 +33,9 @@ exports.addJSONtree = function(req, res) {
 	var instruction_tree = req.body;
 	console.log("Instruction Tree:");
 	console.log(instruction_tree);
-
+	var instruction_tree_array = [instruction_tree];
 	var company_id = instruction_tree.company_id;
-	PG.knex('companies').update('instruction_tree', JSON.stringify(instruction_tree)).where('company_id', company_id).then(function(result) {
+	PG.knex('companies').update('instruction_tree', JSON.stringify(instruction_tree_array)).where('company_id', company_id).then(function(result) {
 		console.log("Successfully added JSON Tree");
 		res.send(201,{response:result});
 	}).catch(function(err) {
