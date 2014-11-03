@@ -1,427 +1,92 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node',
-1 verbose cli   '/usr/local/bin/npm',
-1 verbose cli   'install',
-1 verbose cli   '--save-dev',
-1 verbose cli   'gulp-uglify',
-1 verbose cli   'gulp-rename',
-1 verbose cli   'gulp-imagemin',
-1 verbose cli   'gulp-sourcemaps',
-1 verbose cli   'gul--htmlmin' ]
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'prune' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.32
 4 warn package.json helpp@0.0.0 No repository field.
 5 warn package.json helpp@0.0.0 No README data
-6 verbose readDependencies using package.json deps
-7 verbose cache add [ 'gulp-uglify', null ]
-8 verbose cache add name=undefined spec="gulp-uglify" args=["gulp-uglify",null]
-9 verbose parsed url { protocol: null,
-9 verbose parsed url   slashes: null,
-9 verbose parsed url   auth: null,
-9 verbose parsed url   host: null,
-9 verbose parsed url   port: null,
-9 verbose parsed url   hostname: null,
-9 verbose parsed url   hash: null,
-9 verbose parsed url   search: null,
-9 verbose parsed url   query: null,
-9 verbose parsed url   pathname: 'gulp-uglify',
-9 verbose parsed url   path: 'gulp-uglify',
-9 verbose parsed url   href: 'gulp-uglify' }
-10 verbose cache add [ 'gulp-rename', null ]
-11 verbose cache add name=undefined spec="gulp-rename" args=["gulp-rename",null]
-12 verbose parsed url { protocol: null,
-12 verbose parsed url   slashes: null,
-12 verbose parsed url   auth: null,
-12 verbose parsed url   host: null,
-12 verbose parsed url   port: null,
-12 verbose parsed url   hostname: null,
-12 verbose parsed url   hash: null,
-12 verbose parsed url   search: null,
-12 verbose parsed url   query: null,
-12 verbose parsed url   pathname: 'gulp-rename',
-12 verbose parsed url   path: 'gulp-rename',
-12 verbose parsed url   href: 'gulp-rename' }
-13 verbose cache add [ 'gulp-imagemin', null ]
-14 verbose cache add name=undefined spec="gulp-imagemin" args=["gulp-imagemin",null]
-15 verbose parsed url { protocol: null,
-15 verbose parsed url   slashes: null,
-15 verbose parsed url   auth: null,
-15 verbose parsed url   host: null,
-15 verbose parsed url   port: null,
-15 verbose parsed url   hostname: null,
-15 verbose parsed url   hash: null,
-15 verbose parsed url   search: null,
-15 verbose parsed url   query: null,
-15 verbose parsed url   pathname: 'gulp-imagemin',
-15 verbose parsed url   path: 'gulp-imagemin',
-15 verbose parsed url   href: 'gulp-imagemin' }
-16 verbose cache add [ 'gulp-sourcemaps', null ]
-17 verbose cache add name=undefined spec="gulp-sourcemaps" args=["gulp-sourcemaps",null]
-18 verbose parsed url { protocol: null,
-18 verbose parsed url   slashes: null,
-18 verbose parsed url   auth: null,
-18 verbose parsed url   host: null,
-18 verbose parsed url   port: null,
-18 verbose parsed url   hostname: null,
-18 verbose parsed url   hash: null,
-18 verbose parsed url   search: null,
-18 verbose parsed url   query: null,
-18 verbose parsed url   pathname: 'gulp-sourcemaps',
-18 verbose parsed url   path: 'gulp-sourcemaps',
-18 verbose parsed url   href: 'gulp-sourcemaps' }
-19 verbose cache add [ 'gul--htmlmin', null ]
-20 verbose cache add name=undefined spec="gul--htmlmin" args=["gul--htmlmin",null]
-21 verbose parsed url { protocol: null,
-21 verbose parsed url   slashes: null,
-21 verbose parsed url   auth: null,
-21 verbose parsed url   host: null,
-21 verbose parsed url   port: null,
-21 verbose parsed url   hostname: null,
-21 verbose parsed url   hash: null,
-21 verbose parsed url   search: null,
-21 verbose parsed url   query: null,
-21 verbose parsed url   pathname: 'gul--htmlmin',
-21 verbose parsed url   path: 'gul--htmlmin',
-21 verbose parsed url   href: 'gul--htmlmin' }
-22 silly lockFile 15fab96b-gulp-uglify gulp-uglify
-23 verbose lock gulp-uglify /Users/piyushpoddar/.npm/15fab96b-gulp-uglify.lock
-24 silly lockFile 8ff38cb7-gulp-rename gulp-rename
-25 verbose lock gulp-rename /Users/piyushpoddar/.npm/8ff38cb7-gulp-rename.lock
-26 silly lockFile fa224668-gulp-imagemin gulp-imagemin
-27 verbose lock gulp-imagemin /Users/piyushpoddar/.npm/fa224668-gulp-imagemin.lock
-28 silly lockFile 5c5345b9-gulp-sourcemaps gulp-sourcemaps
-29 verbose lock gulp-sourcemaps /Users/piyushpoddar/.npm/5c5345b9-gulp-sourcemaps.lock
-30 silly lockFile 32d0ed6a-gul-htmlmin gul--htmlmin
-31 verbose lock gul--htmlmin /Users/piyushpoddar/.npm/32d0ed6a-gul-htmlmin.lock
-32 silly lockFile 15fab96b-gulp-uglify gulp-uglify
-33 silly lockFile 15fab96b-gulp-uglify gulp-uglify
-34 silly lockFile 8ff38cb7-gulp-rename gulp-rename
-35 silly lockFile 8ff38cb7-gulp-rename gulp-rename
-36 silly lockFile fa224668-gulp-imagemin gulp-imagemin
-37 silly lockFile fa224668-gulp-imagemin gulp-imagemin
-38 silly lockFile 32d0ed6a-gul-htmlmin gul--htmlmin
-39 silly lockFile 32d0ed6a-gul-htmlmin gul--htmlmin
-40 verbose addNamed [ 'gulp-uglify', '' ]
-41 verbose addNamed [ null, '*' ]
-42 silly lockFile 044a9113-gulp-uglify gulp-uglify@
-43 verbose lock gulp-uglify@ /Users/piyushpoddar/.npm/044a9113-gulp-uglify.lock
-44 silly lockFile 5c5345b9-gulp-sourcemaps gulp-sourcemaps
-45 silly lockFile 5c5345b9-gulp-sourcemaps gulp-sourcemaps
-46 verbose addNamed [ 'gulp-rename', '' ]
-47 verbose addNamed [ null, '*' ]
-48 silly lockFile 81aa0665-gulp-rename gulp-rename@
-49 verbose lock gulp-rename@ /Users/piyushpoddar/.npm/81aa0665-gulp-rename.lock
-50 verbose addNamed [ 'gulp-imagemin', '' ]
-51 verbose addNamed [ null, '*' ]
-52 silly lockFile 0ba22ca1-gulp-imagemin gulp-imagemin@
-53 verbose lock gulp-imagemin@ /Users/piyushpoddar/.npm/0ba22ca1-gulp-imagemin.lock
-54 verbose addNamed [ 'gul--htmlmin', '' ]
-55 verbose addNamed [ null, '*' ]
-56 silly lockFile e240bc2f-gul-htmlmin gul--htmlmin@
-57 verbose lock gul--htmlmin@ /Users/piyushpoddar/.npm/e240bc2f-gul-htmlmin.lock
-58 verbose addNamed [ 'gulp-sourcemaps', '' ]
-59 verbose addNamed [ null, '*' ]
-60 silly lockFile e21003b7-gulp-sourcemaps gulp-sourcemaps@
-61 verbose lock gulp-sourcemaps@ /Users/piyushpoddar/.npm/e21003b7-gulp-sourcemaps.lock
-62 silly addNameRange { name: 'gulp-uglify', range: '*', hasData: false }
-63 silly addNameRange { name: 'gulp-rename', range: '*', hasData: false }
-64 silly addNameRange { name: 'gulp-imagemin', range: '*', hasData: false }
-65 verbose request where is /gulp-uglify
-66 verbose request registry https://registry.npmjs.org/
-67 verbose request id d0a11dfe9308f71f
-68 verbose url raw /gulp-uglify
-69 verbose url resolving [ 'https://registry.npmjs.org/', './gulp-uglify' ]
-70 verbose url resolved https://registry.npmjs.org/gulp-uglify
-71 verbose request where is https://registry.npmjs.org/gulp-uglify
-72 info trying registry request attempt 1 at 16:21:33
-73 http GET https://registry.npmjs.org/gulp-uglify
-74 silly addNameRange { name: 'gul--htmlmin', range: '*', hasData: false }
-75 verbose request where is /gulp-rename
-76 verbose request registry https://registry.npmjs.org/
-77 verbose url raw /gulp-rename
-78 verbose url resolving [ 'https://registry.npmjs.org/', './gulp-rename' ]
-79 verbose url resolved https://registry.npmjs.org/gulp-rename
-80 verbose request where is https://registry.npmjs.org/gulp-rename
-81 info trying registry request attempt 1 at 16:21:33
-82 http GET https://registry.npmjs.org/gulp-rename
-83 verbose request where is /gulp-imagemin
-84 verbose request registry https://registry.npmjs.org/
-85 verbose url raw /gulp-imagemin
-86 verbose url resolving [ 'https://registry.npmjs.org/', './gulp-imagemin' ]
-87 verbose url resolved https://registry.npmjs.org/gulp-imagemin
-88 verbose request where is https://registry.npmjs.org/gulp-imagemin
-89 info trying registry request attempt 1 at 16:21:33
-90 http GET https://registry.npmjs.org/gulp-imagemin
-91 silly addNameRange { name: 'gulp-sourcemaps', range: '*', hasData: false }
-92 verbose request where is /gul--htmlmin
-93 verbose request registry https://registry.npmjs.org/
-94 verbose url raw /gul--htmlmin
-95 verbose url resolving [ 'https://registry.npmjs.org/', './gul--htmlmin' ]
-96 verbose url resolved https://registry.npmjs.org/gul--htmlmin
-97 verbose request where is https://registry.npmjs.org/gul--htmlmin
-98 info trying registry request attempt 1 at 16:21:33
-99 http GET https://registry.npmjs.org/gul--htmlmin
-100 verbose request where is /gulp-sourcemaps
-101 verbose request registry https://registry.npmjs.org/
-102 verbose url raw /gulp-sourcemaps
-103 verbose url resolving [ 'https://registry.npmjs.org/', './gulp-sourcemaps' ]
-104 verbose url resolved https://registry.npmjs.org/gulp-sourcemaps
-105 verbose request where is https://registry.npmjs.org/gulp-sourcemaps
-106 info trying registry request attempt 1 at 16:21:33
-107 http GET https://registry.npmjs.org/gulp-sourcemaps
-108 http 200 https://registry.npmjs.org/gulp-rename
-109 silly registry.get cb [ 200,
-109 silly registry.get   { date: 'Fri, 31 Oct 2014 20:21:33 GMT',
-109 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-109 silly registry.get     etag: '"BT5ELUB6G4V9SQMQTGGMYC2RJ"',
-109 silly registry.get     'content-type': 'application/json',
-109 silly registry.get     'cache-control': 'max-age=60',
-109 silly registry.get     'content-length': '9800',
-109 silly registry.get     'accept-ranges': 'bytes',
-109 silly registry.get     via: '1.1 varnish',
-109 silly registry.get     age: '55',
-109 silly registry.get     'x-served-by': 'cache-iad2125-IAD',
-109 silly registry.get     'x-cache': 'HIT',
-109 silly registry.get     'x-cache-hits': '2',
-109 silly registry.get     'x-timer': 'S1414786893.908852,VS0,VE0',
-109 silly registry.get     vary: 'Accept',
-109 silly registry.get     'keep-alive': 'timeout=10, max=50',
-109 silly registry.get     connection: 'Keep-Alive' } ]
-110 http 404 https://registry.npmjs.org/gul--htmlmin
-111 verbose headers { date: 'Fri, 31 Oct 2014 20:21:33 GMT',
-111 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
-111 verbose headers   'content-type': 'application/json',
-111 verbose headers   'cache-control': 'max-age=0',
-111 verbose headers   'content-length': '52',
-111 verbose headers   'accept-ranges': 'bytes',
-111 verbose headers   via: '1.1 varnish',
-111 verbose headers   age: '0',
-111 verbose headers   'x-served-by': 'cache-iad2123-IAD',
-111 verbose headers   'x-cache': 'MISS',
-111 verbose headers   'x-cache-hits': '0',
-111 verbose headers   'x-timer': 'S1414786893.830921,VS0,VE81',
-111 verbose headers   'keep-alive': 'timeout=10, max=50',
-111 verbose headers   connection: 'Keep-Alive' }
-112 silly registry.get cb [ 404,
-112 silly registry.get   { date: 'Fri, 31 Oct 2014 20:21:33 GMT',
-112 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
-112 silly registry.get     'content-type': 'application/json',
-112 silly registry.get     'cache-control': 'max-age=0',
-112 silly registry.get     'content-length': '52',
-112 silly registry.get     'accept-ranges': 'bytes',
-112 silly registry.get     via: '1.1 varnish',
-112 silly registry.get     age: '0',
-112 silly registry.get     'x-served-by': 'cache-iad2123-IAD',
-112 silly registry.get     'x-cache': 'MISS',
-112 silly registry.get     'x-cache-hits': '0',
-112 silly registry.get     'x-timer': 'S1414786893.830921,VS0,VE81',
-112 silly registry.get     'keep-alive': 'timeout=10, max=50',
-112 silly registry.get     connection: 'Keep-Alive' } ]
-113 silly lockFile e240bc2f-gul-htmlmin gul--htmlmin@
-114 silly lockFile e240bc2f-gul-htmlmin gul--htmlmin@
-115 silly addNameRange number 2 { name: 'gulp-rename', range: '*', hasData: true }
-116 silly addNameRange versions [ 'gulp-rename',
-116 silly addNameRange   [ '0.1.0', '0.2.1', '0.2.2', '1.0.0', '1.1.0', '1.2.0' ] ]
-117 verbose addNamed [ 'gulp-rename', '1.2.0' ]
-118 verbose addNamed [ '1.2.0', '1.2.0' ]
-119 silly lockFile 5981c611-gulp-rename-1-2-0 gulp-rename@1.2.0
-120 verbose lock gulp-rename@1.2.0 /Users/piyushpoddar/.npm/5981c611-gulp-rename-1-2-0.lock
-121 silly lockFile b4be9a05-ulp-rename-gulp-rename-1-2-0-tgz https://registry.npmjs.org/gulp-rename/-/gulp-rename-1.2.0.tgz
-122 verbose lock https://registry.npmjs.org/gulp-rename/-/gulp-rename-1.2.0.tgz /Users/piyushpoddar/.npm/b4be9a05-ulp-rename-gulp-rename-1-2-0-tgz.lock
-123 verbose addRemoteTarball [ 'https://registry.npmjs.org/gulp-rename/-/gulp-rename-1.2.0.tgz',
-123 verbose addRemoteTarball   '060394a09b085cf5d46fc48acdc5657f8fee9e4e' ]
-124 info retry fetch attempt 1 at 16:21:34
-125 verbose fetch to= /tmp/npm-28608-7Qp0SrrA/registry.npmjs.org/gulp-rename/-/gulp-rename-1.2.0.tgz
-126 http GET https://registry.npmjs.org/gulp-rename/-/gulp-rename-1.2.0.tgz
-127 http 200 https://registry.npmjs.org/gulp-uglify
-128 silly registry.get cb [ 200,
-128 silly registry.get   { date: 'Fri, 31 Oct 2014 20:21:33 GMT',
-128 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-128 silly registry.get     etag: '"8V56JEJWBV9F1TFSKQF5D9AN0"',
-128 silly registry.get     'content-type': 'application/json',
-128 silly registry.get     'cache-control': 'max-age=60',
-128 silly registry.get     'content-length': '19102',
-128 silly registry.get     'accept-ranges': 'bytes',
-128 silly registry.get     via: '1.1 varnish',
-128 silly registry.get     age: '55',
-128 silly registry.get     'x-served-by': 'cache-iad2133-IAD',
-128 silly registry.get     'x-cache': 'HIT',
-128 silly registry.get     'x-cache-hits': '1',
-128 silly registry.get     'x-timer': 'S1414786893.862352,VS0,VE0',
-128 silly registry.get     vary: 'Accept',
-128 silly registry.get     'keep-alive': 'timeout=10, max=50',
-128 silly registry.get     connection: 'Keep-Alive' } ]
-129 silly addNameRange number 2 { name: 'gulp-uglify', range: '*', hasData: true }
-130 silly addNameRange versions [ 'gulp-uglify',
-130 silly addNameRange   [ '0.0.1',
-130 silly addNameRange     '0.0.3',
-130 silly addNameRange     '0.0.4',
-130 silly addNameRange     '0.1.0',
-130 silly addNameRange     '0.2.0',
-130 silly addNameRange     '0.2.1',
-130 silly addNameRange     '0.3.0',
-130 silly addNameRange     '0.3.1',
-130 silly addNameRange     '0.3.2',
-130 silly addNameRange     '1.0.0-0',
-130 silly addNameRange     '1.0.0',
-130 silly addNameRange     '1.0.1' ] ]
-131 verbose addNamed [ 'gulp-uglify', '1.0.1' ]
-132 verbose addNamed [ '1.0.1', '1.0.1' ]
-133 silly lockFile cef7c707-gulp-uglify-1-0-1 gulp-uglify@1.0.1
-134 verbose lock gulp-uglify@1.0.1 /Users/piyushpoddar/.npm/cef7c707-gulp-uglify-1-0-1.lock
-135 silly lockFile b7d7ebc6-ulp-uglify-gulp-uglify-1-0-1-tgz https://registry.npmjs.org/gulp-uglify/-/gulp-uglify-1.0.1.tgz
-136 verbose lock https://registry.npmjs.org/gulp-uglify/-/gulp-uglify-1.0.1.tgz /Users/piyushpoddar/.npm/b7d7ebc6-ulp-uglify-gulp-uglify-1-0-1-tgz.lock
-137 verbose addRemoteTarball [ 'https://registry.npmjs.org/gulp-uglify/-/gulp-uglify-1.0.1.tgz',
-137 verbose addRemoteTarball   'd70a24ff85b179a7b16cee577023f19b9c4ba96f' ]
-138 info retry fetch attempt 1 at 16:21:34
-139 verbose fetch to= /tmp/npm-28608-7Qp0SrrA/registry.npmjs.org/gulp-uglify/-/gulp-uglify-1.0.1.tgz
-140 http GET https://registry.npmjs.org/gulp-uglify/-/gulp-uglify-1.0.1.tgz
-141 http 200 https://registry.npmjs.org/gulp-sourcemaps
-142 silly registry.get cb [ 200,
-142 silly registry.get   { date: 'Fri, 31 Oct 2014 20:21:33 GMT',
-142 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-142 silly registry.get     etag: '"CED0BVDE5HCE5Y828AWDSRNIL"',
-142 silly registry.get     'content-type': 'application/json',
-142 silly registry.get     'cache-control': 'max-age=60',
-142 silly registry.get     'content-length': '44765',
-142 silly registry.get     'accept-ranges': 'bytes',
-142 silly registry.get     via: '1.1 varnish',
-142 silly registry.get     age: '24',
-142 silly registry.get     'x-served-by': 'cache-iad2124-IAD',
-142 silly registry.get     'x-cache': 'HIT',
-142 silly registry.get     'x-cache-hits': '2',
-142 silly registry.get     'x-timer': 'S1414786893.858557,VS0,VE0',
-142 silly registry.get     vary: 'Accept',
-142 silly registry.get     'keep-alive': 'timeout=10, max=50',
-142 silly registry.get     connection: 'Keep-Alive' } ]
-143 silly addNameRange number 2 { name: 'gulp-sourcemaps', range: '*', hasData: true }
-144 silly addNameRange versions [ 'gulp-sourcemaps',
-144 silly addNameRange   [ '0.2.0',
-144 silly addNameRange     '0.2.1',
-144 silly addNameRange     '0.3.0',
-144 silly addNameRange     '0.3.1',
-144 silly addNameRange     '0.4.0',
-144 silly addNameRange     '0.4.1',
-144 silly addNameRange     '0.4.2',
-144 silly addNameRange     '0.4.3',
-144 silly addNameRange     '0.4.4',
-144 silly addNameRange     '0.4.5',
-144 silly addNameRange     '0.4.6',
-144 silly addNameRange     '1.0.0',
-144 silly addNameRange     '1.1.0',
-144 silly addNameRange     '1.1.1',
-144 silly addNameRange     '1.1.2',
-144 silly addNameRange     '1.1.3',
-144 silly addNameRange     '1.1.4',
-144 silly addNameRange     '1.1.5',
-144 silly addNameRange     '1.2.0',
-144 silly addNameRange     '1.2.1',
-144 silly addNameRange     '1.2.2',
-144 silly addNameRange     '1.2.3',
-144 silly addNameRange     '1.2.4',
-144 silly addNameRange     '1.2.5',
-144 silly addNameRange     '1.2.6',
-144 silly addNameRange     '1.2.7' ] ]
-145 verbose addNamed [ 'gulp-sourcemaps', '1.2.7' ]
-146 verbose addNamed [ '1.2.7', '1.2.7' ]
-147 silly lockFile b40ca92b-gulp-sourcemaps-1-2-7 gulp-sourcemaps@1.2.7
-148 verbose lock gulp-sourcemaps@1.2.7 /Users/piyushpoddar/.npm/b40ca92b-gulp-sourcemaps-1-2-7.lock
-149 silly lockFile f2318068-cemaps-gulp-sourcemaps-1-2-7-tgz https://registry.npmjs.org/gulp-sourcemaps/-/gulp-sourcemaps-1.2.7.tgz
-150 verbose lock https://registry.npmjs.org/gulp-sourcemaps/-/gulp-sourcemaps-1.2.7.tgz /Users/piyushpoddar/.npm/f2318068-cemaps-gulp-sourcemaps-1-2-7-tgz.lock
-151 verbose addRemoteTarball [ 'https://registry.npmjs.org/gulp-sourcemaps/-/gulp-sourcemaps-1.2.7.tgz',
-151 verbose addRemoteTarball   'e253ae16a6c8d4c51ad3d2af8bba0bbde74833fc' ]
-152 info retry fetch attempt 1 at 16:21:34
-153 verbose fetch to= /tmp/npm-28608-7Qp0SrrA/registry.npmjs.org/gulp-sourcemaps/-/gulp-sourcemaps-1.2.7.tgz
-154 http GET https://registry.npmjs.org/gulp-sourcemaps/-/gulp-sourcemaps-1.2.7.tgz
-155 http 200 https://registry.npmjs.org/gulp-rename/-/gulp-rename-1.2.0.tgz
-156 silly lockFile b4be9a05-ulp-rename-gulp-rename-1-2-0-tgz https://registry.npmjs.org/gulp-rename/-/gulp-rename-1.2.0.tgz
-157 silly lockFile b4be9a05-ulp-rename-gulp-rename-1-2-0-tgz https://registry.npmjs.org/gulp-rename/-/gulp-rename-1.2.0.tgz
-158 silly lockFile 5981c611-gulp-rename-1-2-0 gulp-rename@1.2.0
-159 silly lockFile 5981c611-gulp-rename-1-2-0 gulp-rename@1.2.0
-160 silly lockFile 81aa0665-gulp-rename gulp-rename@
-161 silly lockFile 81aa0665-gulp-rename gulp-rename@
-162 http 200 https://registry.npmjs.org/gulp-uglify/-/gulp-uglify-1.0.1.tgz
-163 silly lockFile b7d7ebc6-ulp-uglify-gulp-uglify-1-0-1-tgz https://registry.npmjs.org/gulp-uglify/-/gulp-uglify-1.0.1.tgz
-164 silly lockFile b7d7ebc6-ulp-uglify-gulp-uglify-1-0-1-tgz https://registry.npmjs.org/gulp-uglify/-/gulp-uglify-1.0.1.tgz
-165 silly lockFile cef7c707-gulp-uglify-1-0-1 gulp-uglify@1.0.1
-166 silly lockFile cef7c707-gulp-uglify-1-0-1 gulp-uglify@1.0.1
-167 silly lockFile 044a9113-gulp-uglify gulp-uglify@
-168 silly lockFile 044a9113-gulp-uglify gulp-uglify@
-169 http 200 https://registry.npmjs.org/gulp-imagemin
-170 silly registry.get cb [ 200,
-170 silly registry.get   { date: 'Fri, 31 Oct 2014 20:21:34 GMT',
-170 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-170 silly registry.get     etag: '"2RCN3B4SLFXVTAFCRSHD1XKVD"',
-170 silly registry.get     'content-type': 'application/json',
-170 silly registry.get     'cache-control': 'max-age=60',
-170 silly registry.get     'content-length': '27055',
-170 silly registry.get     'accept-ranges': 'bytes',
-170 silly registry.get     via: '1.1 varnish',
-170 silly registry.get     age: '0',
-170 silly registry.get     'x-served-by': 'cache-iad2129-IAD',
-170 silly registry.get     'x-cache': 'HIT',
-170 silly registry.get     'x-cache-hits': '1',
-170 silly registry.get     'x-timer': 'S1414786893.861917,VS0,VE352',
-170 silly registry.get     vary: 'Accept',
-170 silly registry.get     'keep-alive': 'timeout=10, max=50',
-170 silly registry.get     connection: 'Keep-Alive' } ]
-171 silly addNameRange number 2 { name: 'gulp-imagemin', range: '*', hasData: true }
-172 silly addNameRange versions [ 'gulp-imagemin',
-172 silly addNameRange   [ '0.1.0',
-172 silly addNameRange     '0.1.1',
-172 silly addNameRange     '0.1.2',
-172 silly addNameRange     '0.1.3',
-172 silly addNameRange     '0.1.4',
-172 silly addNameRange     '0.1.5',
-172 silly addNameRange     '0.2.0',
-172 silly addNameRange     '0.3.0',
-172 silly addNameRange     '0.4.0',
-172 silly addNameRange     '0.5.0',
-172 silly addNameRange     '0.5.1',
-172 silly addNameRange     '0.6.0',
-172 silly addNameRange     '0.6.1',
-172 silly addNameRange     '0.6.2',
-172 silly addNameRange     '1.0.0',
-172 silly addNameRange     '1.0.1',
-172 silly addNameRange     '1.1.0',
-172 silly addNameRange     '1.2.1' ] ]
-173 verbose addNamed [ 'gulp-imagemin', '1.2.1' ]
-174 verbose addNamed [ '1.2.1', '1.2.1' ]
-175 silly lockFile 4d376413-gulp-imagemin-1-2-1 gulp-imagemin@1.2.1
-176 verbose lock gulp-imagemin@1.2.1 /Users/piyushpoddar/.npm/4d376413-gulp-imagemin-1-2-1.lock
-177 silly lockFile 7f2f7584-imagemin-gulp-imagemin-1-2-1-tgz https://registry.npmjs.org/gulp-imagemin/-/gulp-imagemin-1.2.1.tgz
-178 verbose lock https://registry.npmjs.org/gulp-imagemin/-/gulp-imagemin-1.2.1.tgz /Users/piyushpoddar/.npm/7f2f7584-imagemin-gulp-imagemin-1-2-1-tgz.lock
-179 verbose addRemoteTarball [ 'https://registry.npmjs.org/gulp-imagemin/-/gulp-imagemin-1.2.1.tgz',
-179 verbose addRemoteTarball   '2467e8185199c389222b025ea42c28d4123d9060' ]
-180 info retry fetch attempt 1 at 16:21:34
-181 verbose fetch to= /tmp/npm-28608-7Qp0SrrA/registry.npmjs.org/gulp-imagemin/-/gulp-imagemin-1.2.1.tgz
-182 http GET https://registry.npmjs.org/gulp-imagemin/-/gulp-imagemin-1.2.1.tgz
-183 http 200 https://registry.npmjs.org/gulp-sourcemaps/-/gulp-sourcemaps-1.2.7.tgz
-184 silly lockFile f2318068-cemaps-gulp-sourcemaps-1-2-7-tgz https://registry.npmjs.org/gulp-sourcemaps/-/gulp-sourcemaps-1.2.7.tgz
-185 silly lockFile f2318068-cemaps-gulp-sourcemaps-1-2-7-tgz https://registry.npmjs.org/gulp-sourcemaps/-/gulp-sourcemaps-1.2.7.tgz
-186 silly lockFile b40ca92b-gulp-sourcemaps-1-2-7 gulp-sourcemaps@1.2.7
-187 silly lockFile b40ca92b-gulp-sourcemaps-1-2-7 gulp-sourcemaps@1.2.7
-188 silly lockFile e21003b7-gulp-sourcemaps gulp-sourcemaps@
-189 silly lockFile e21003b7-gulp-sourcemaps gulp-sourcemaps@
-190 http 200 https://registry.npmjs.org/gulp-imagemin/-/gulp-imagemin-1.2.1.tgz
-191 silly lockFile 7f2f7584-imagemin-gulp-imagemin-1-2-1-tgz https://registry.npmjs.org/gulp-imagemin/-/gulp-imagemin-1.2.1.tgz
-192 silly lockFile 7f2f7584-imagemin-gulp-imagemin-1-2-1-tgz https://registry.npmjs.org/gulp-imagemin/-/gulp-imagemin-1.2.1.tgz
-193 silly lockFile 4d376413-gulp-imagemin-1-2-1 gulp-imagemin@1.2.1
-194 silly lockFile 4d376413-gulp-imagemin-1-2-1 gulp-imagemin@1.2.1
-195 silly lockFile 0ba22ca1-gulp-imagemin gulp-imagemin@
-196 silly lockFile 0ba22ca1-gulp-imagemin gulp-imagemin@
-197 error 404 404 Not Found: gul--htmlmin
-197 error 404
-197 error 404 'gul--htmlmin' is not in the npm registry.
-197 error 404 You should bug the author to publish it
-197 error 404 It was specified as a dependency of 'helpp'
-197 error 404
-197 error 404 Note that you can also install from a
-197 error 404 tarball, folder, or http url, or git url.
-198 error System Darwin 13.2.0
-199 error command "node" "/usr/local/bin/npm" "install" "--save-dev" "gulp-uglify" "gulp-rename" "gulp-imagemin" "gulp-sourcemaps" "gul--htmlmin"
-200 error cwd /Users/piyushpoddar/Documents/Diial
-201 error node -v v0.10.32
-202 error npm -v 1.4.28
-203 error code E404
-204 verbose exit [ 1, true ]
+6 verbose node_modules/gulp-rename unbuild
+7 verbose node_modules/foreman unbuild
+8 verbose node_modules/gulp-sourcemaps unbuild
+9 verbose node_modules/gulp-uglify unbuild
+10 verbose node_modules/gulp-concat unbuild
+11 verbose node_modules/gulp-autoprefixer unbuild
+12 verbose node_modules/gulp-cache unbuild
+13 verbose node_modules/gulp-clean unbuild
+14 verbose node_modules/gulp-htmlmin unbuild
+15 verbose node_modules/gulp-jade unbuild
+16 verbose node_modules/gulp-notify unbuild
+17 verbose node_modules/gulp-minify-css unbuild
+18 verbose node_modules/gulp-jshint unbuild
+19 verbose node_modules/gulp-nodemon unbuild
+20 verbose node_modules/gulp-imagemin unbuild
+21 info preuninstall foreman@0.3.0
+22 info preuninstall gulp-rename@1.2.0
+23 info preuninstall gulp-sourcemaps@1.2.7
+24 info preuninstall gulp-uglify@1.0.1
+25 info preuninstall gulp-concat@2.4.1
+26 info preuninstall gulp-imagemin@1.2.1
+27 info uninstall foreman@0.3.0
+28 info uninstall gulp-rename@1.2.0
+29 info uninstall gulp-sourcemaps@1.2.7
+30 info uninstall gulp-uglify@1.0.1
+31 info uninstall gulp-concat@2.4.1
+32 info uninstall gulp-imagemin@1.2.1
+33 verbose true,/Users/piyushpoddar/Documents/Diial/node_modules,/Users/piyushpoddar/Documents/Diial/node_modules unbuild foreman@0.3.0
+34 verbose /Users/piyushpoddar/Documents/Diial/node_modules/.bin,[object Object] binRoot
+35 verbose true,/Users/piyushpoddar/Documents/Diial/node_modules,/Users/piyushpoddar/Documents/Diial/node_modules unbuild gulp-rename@1.2.0
+36 info postuninstall gulp-rename@1.2.0
+37 verbose true,/Users/piyushpoddar/Documents/Diial/node_modules,/Users/piyushpoddar/Documents/Diial/node_modules unbuild gulp-sourcemaps@1.2.7
+38 info postuninstall gulp-sourcemaps@1.2.7
+39 verbose true,/Users/piyushpoddar/Documents/Diial/node_modules,/Users/piyushpoddar/Documents/Diial/node_modules unbuild gulp-uglify@1.0.1
+40 info postuninstall gulp-uglify@1.0.1
+41 verbose true,/Users/piyushpoddar/Documents/Diial/node_modules,/Users/piyushpoddar/Documents/Diial/node_modules unbuild gulp-concat@2.4.1
+42 info postuninstall gulp-concat@2.4.1
+43 verbose true,/Users/piyushpoddar/Documents/Diial/node_modules,/Users/piyushpoddar/Documents/Diial/node_modules unbuild gulp-imagemin@1.2.1
+44 info postuninstall gulp-imagemin@1.2.1
+45 info preuninstall gulp-autoprefixer@1.0.1
+46 info preuninstall gulp-cache@0.2.4
+47 info preuninstall gulp-clean@0.3.1
+48 info preuninstall gulp-htmlmin@0.2.0
+49 info preuninstall gulp-jade@0.9.0
+50 info preuninstall gulp-jshint@1.8.6
+51 info preuninstall gulp-notify@2.0.0
+52 info preuninstall gulp-minify-css@0.3.11
+53 info preuninstall gulp-nodemon@1.0.4
+54 info uninstall gulp-autoprefixer@1.0.1
+55 info uninstall gulp-cache@0.2.4
+56 info uninstall gulp-clean@0.3.1
+57 info uninstall gulp-htmlmin@0.2.0
+58 info uninstall gulp-jade@0.9.0
+59 info uninstall gulp-jshint@1.8.6
+60 info uninstall gulp-notify@2.0.0
+61 info uninstall gulp-minify-css@0.3.11
+62 info uninstall gulp-nodemon@1.0.4
+63 verbose true,/Users/piyushpoddar/Documents/Diial/node_modules,/Users/piyushpoddar/Documents/Diial/node_modules unbuild gulp-autoprefixer@1.0.1
+64 info postuninstall gulp-autoprefixer@1.0.1
+65 verbose true,/Users/piyushpoddar/Documents/Diial/node_modules,/Users/piyushpoddar/Documents/Diial/node_modules unbuild gulp-cache@0.2.4
+66 info postuninstall gulp-cache@0.2.4
+67 verbose true,/Users/piyushpoddar/Documents/Diial/node_modules,/Users/piyushpoddar/Documents/Diial/node_modules unbuild gulp-clean@0.3.1
+68 info postuninstall gulp-clean@0.3.1
+69 verbose true,/Users/piyushpoddar/Documents/Diial/node_modules,/Users/piyushpoddar/Documents/Diial/node_modules unbuild gulp-htmlmin@0.2.0
+70 info postuninstall gulp-htmlmin@0.2.0
+71 verbose true,/Users/piyushpoddar/Documents/Diial/node_modules,/Users/piyushpoddar/Documents/Diial/node_modules unbuild gulp-jade@0.9.0
+72 info postuninstall gulp-jade@0.9.0
+73 verbose true,/Users/piyushpoddar/Documents/Diial/node_modules,/Users/piyushpoddar/Documents/Diial/node_modules unbuild gulp-jshint@1.8.6
+74 info postuninstall gulp-jshint@1.8.6
+75 verbose true,/Users/piyushpoddar/Documents/Diial/node_modules,/Users/piyushpoddar/Documents/Diial/node_modules unbuild gulp-notify@2.0.0
+76 info postuninstall gulp-notify@2.0.0
+77 verbose true,/Users/piyushpoddar/Documents/Diial/node_modules,/Users/piyushpoddar/Documents/Diial/node_modules unbuild gulp-minify-css@0.3.11
+78 info postuninstall gulp-minify-css@0.3.11
+79 verbose true,/Users/piyushpoddar/Documents/Diial/node_modules,/Users/piyushpoddar/Documents/Diial/node_modules unbuild gulp-nodemon@1.0.4
+80 info postuninstall gulp-nodemon@1.0.4
+81 error Refusing to delete: /Users/piyushpoddar/Documents/Diial/node_modules/.bin/nf not in /Users/piyushpoddar/Documents/Diial/node_modules/foreman
+File exists: /Users/piyushpoddar/Documents/Diial/node_modules/.bin/nf
+Move it away, and try again.
+82 error System Darwin 13.2.0
+83 error command "node" "/usr/local/bin/npm" "prune"
+84 error cwd /Users/piyushpoddar/Documents/Diial
+85 error node -v v0.10.32
+86 error npm -v 1.4.28
+87 error path /Users/piyushpoddar/Documents/Diial/node_modules/.bin/nf
+88 error code EEXIST
+89 verbose exit [ 1, true ]
