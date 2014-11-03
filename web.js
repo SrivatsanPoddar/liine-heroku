@@ -312,3 +312,4 @@ app.get('/customImages',customizeCallCenter.getCustomImages);
 
 app.post('/customImages',customizeCallCenter.setCustomImages);
 
+app.get('/parentNodes', companies.getParentNodes);

@@ -41,6 +41,8 @@ exports.getCompetitors = function(req, res) {
 	});
 };
 
+
+
 exports.getCompetitorsAd = function(req, res) {
 	var this_company_id = req.query.company_id;
 
@@ -58,3 +60,13 @@ exports.getCompetitorsAd = function(req, res) {
 		res.send(500,"Error getting competitors");
 	});
 };
+
+exports.getParentNodes = function(req, res) {
+	PG.knex('companies').select("company_name","company_id").then(function(result) {
+		res.send(201,result);
+		console.log("Successfully retrieved parent nodes");
+	}).catch(function(err) {
+		console.error("Error retrieiving parent nodes", err);
+		res.send(501,"Error retrieiving parent nodes: " + err);
+	});
+}
