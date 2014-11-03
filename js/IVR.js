@@ -6,7 +6,7 @@ exports.getInstructionTree = function(req, res) {
 	PG.knex('companies').select('instruction_tree').where('company_id',company_id).then(function(result) {
 		console.log("Result of retrieving instruction tree:");
 		console.log(result);	     
-		res.send(201,JSON.parse('{"instruction_tree": ' + JSON.stringify(result[0]) + '}'));
+		res.send(201,JSON.parse('{"instruction_tree": ' + JSON.stringify(result[0].instruction_tree) + '}'));
 
 	}).catch(function(error) {
 		console.error("Error retrieving instruction tree for company with company_id: " + company_id + ". The reported error: " + error);
