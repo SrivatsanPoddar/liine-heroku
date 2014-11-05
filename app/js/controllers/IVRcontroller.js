@@ -69,7 +69,7 @@ angular.module('liineApp.controllers.IVR', ['liineApp.services.IVR'])
                                 children:[]}];
             }
             else {
-              $scope.list = response.instruction_tree.instruction_tree;
+              $scope.list = response.instruction_tree;
             }
 
         },function(errorResponse) {

@@ -12,6 +12,10 @@ angular.module('liineApp.services.live', [])
             var index = 1;
             var pairsIndex = -1;
             var isConnected = false;
+            var currentAuthPicture = null;
+            var originalAuthPicture = null;
+            var toAuthenticate = false;
+
             return {
             	init: function(company_id) {
             		ws = new WebSocket(url);
@@ -77,9 +81,32 @@ angular.module('liineApp.services.live', [])
             			};
 
             			if(receivedData.hasOwnProperty('target_role')) {
-            				$rootScope.$apply(function () {
-            					messages.push({message: receivedData.message});
-            				});
+                            if (receivedData.request_type === 'MESSAGE') {
+                                $rootScope.$apply(function () {
+                                    messages.push({message: receivedData.message});
+                                });
+                            }
+                            else if (receivedData.request_type === 'CURRENT AUTHENTICATION PICTURE') {
+                                currentAuthPicture = receivedData.message;
+
+                                if (currentAuthPicture && originalAuthPicture) {
+                                    $rootScope.$apply(function () {
+                                        toAuthenticate = true;
+                                    });
+                                }
+                            }
+                            else if (receivedData.request_type === 'ORIGINAL AUTHENTICATION PICTURE') {
+                                originalAuthPicture = receivedData.message;
+
+                                if (currentAuthPicture && originalAuthPicture) {
+                                    $rootScope.$apply(function () {
+                                        toAuthenticate = true;
+                                    });
+                                }
+                            };
+
+
+
             			}
 
             			// var receivedMessage = angular.fromJson(data.data).message;
@@ -99,6 +126,14 @@ angular.module('liineApp.services.live', [])
         		getPendingConnections: function () {
         			return pendingConnections;
         		},
+                toAuthenticatePictures: function() {
+                    return toAuthenticate;
+                },
+                setAuthenticatePictures: function(myToAuthenticate) {
+                    toAuthenticate = myToAuthenticate;
+                    currentAuthPicture = null;
+                    originalAuthPicture = null;
+                },
         		isConnected: function() {
         			return isConnected;
         		},
@@ -109,7 +144,13 @@ angular.module('liineApp.services.live', [])
         				console.log("Paired message of: " + message.message + ". being sent to pairsIndex:" + pairsIndex);
         			}
         			ws.send(JSON.stringify(message));
-        		}
+        		},
+                getCurrentAuthenticationPicture: function() {
+                    return currentAuthPicture;
+                },
+                getOriginalAuthenticationPicture: function() {
+                    return originalAuthPicture;
+                }
             };
 
         }]);

@@ -116,9 +116,9 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live','liineApp.
       $scope.messages = liveService.getMessages();
       $scope.pendingConnections = liveService.getPendingConnections();
       $scope.isConnected = liveService.isConnected();
-
+      $scope.toAuthenticatePictures = liveService.toAuthenticatePictures();
       liveService.init($scope.company_id);
-
+      $scope.currentAuthPicture = null;
       // $scope.refreshMessages = function () {
       //   $scope.messages = liveService.getMessages();
       // };
@@ -140,6 +140,22 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live','liineApp.
           $scope.isConnected = newIsConnectedState;
       });
 
+      $scope.$watch(function() {return liveService.toAuthenticatePictures() }, 
+        function (newToAuthenticatePictures) {
+          console.log("The authenticate picture state has changed!", newToAuthenticatePictures);
+          $scope.toAuthenticatePictures = liveService.toAuthenticatePictures();
+          if ($scope.toAuthenticatePictures) {
+            $scope.currentAuthPicture = liveService.getCurrentAuthenticationPicture();
+            $scope.originalAuthPicture = liveService.getOriginalAuthenticationPicture();
+            $('#authenticationModal').modal('show');
+          }
+      });
+
+      $scope.closeAuthentication = function() {
+        $scope.currentAuthPicture = null;
+        $scope.originalAuthPicture = null;
+        liveService.setAuthenticatePictures(false);
+      }
       // $scope.$watch(function() {return liveService.getMessages() }, 
       //   function (newMessages) {
       //     console.log("A New Message has been Received");
@@ -174,6 +190,16 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live','liineApp.
           angular.element('#sendLink').focus();
         }
         //toastr.success("Requested Info From Caller");
+      };
+
+      $scope.requestPayment = function() {
+          var requestObject = {request_type: 'payment', message: '2 Year Warranty', amount:5.00};
+          $scope.sendRequest(requestObject);
+      };
+
+      $scope.requestAuthentication = function() {
+          var requestObject = {request_type: 'authentication'};
+          $scope.sendRequest(requestObject);
       };
 
       $scope.copyText = function(textToCopy) {

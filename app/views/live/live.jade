@@ -18,7 +18,7 @@ div(ng-controller="LiveController")
 					br
 					h4.text-center Not Currently Connected
 					br
-				div(ng-show="isConnected")
+				div(ng-show="isConnected || !isConnected")
 					form.form-horizontal
 						h4.text-center Current Call
 						.form-group.text-center(style="padding-top:0px; border-top: 1px solid #ccc;")
@@ -46,12 +46,20 @@ div(ng-controller="LiveController")
 									.row.text-center
 										label.control-label(for='sendLink') Send Information
 									br
+									.row.text-center
+										.col-lg-2.col-lg-offset-3
+											button.btn.btn-primary.text-center(title="Send Image" type="button" data-toggle="modal" data-target="#imageModal")
+												span.glyphicon.glyphicon-picture
+										.col-lg-2
+											button.btn.btn-primary.text-center(title="Authenticate User" ng-click="requestAuthentication()" type="button" data-toggle="modal")
+												span.glyphicon.glyphicon-lock
+										.col-lg-2
+											button.btn.btn-primary.text-center(title="Request Payment" ng-click="requestPayment()" type="button" data-toggle="modal")
+												span.glyphicon.glyphicon-usd
+									br					
 									.row
 										.col-lg-10
 											input#sendLink.form-control(ng-model="info.link_url", type='text', placeholder="URL, Phone #, Email, or Other here...", autocomplete='on', style='cursor: auto;')
-										.col-lg-1
-											button.btn.btn-primary.text-center(type="button" data-toggle="modal" data-target="#imageModal")
-												span.glyphicon.glyphicon-picture
 									div.modal.fade(id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true")
 										div.modal-dialog
 											div.modal-content
@@ -67,6 +75,25 @@ div(ng-controller="LiveController")
 													.row
 														.col-lg-12
 															p Add more images in the customize page
+									div.modal.fade(id="authenticationModal" tabindex="-2" role="dialog" aria-labelledby="authenticationModalLabel" aria-hidden="true")
+										div.modal-dialog
+											div.modal-content
+												div.modal-header
+													button.close(type="button" data-dismiss="modal")
+														span(aria-hidden="true")&times;
+													h4.modal-title Authenticate this Caller
+												div.modal-body
+													.row
+														.col-lg-6
+															img.img-thumbnail(ng-src="{{'data:image/png;base64,' + originalAuthPicture}}" style="max-height:350px;")
+														.col-lg-6
+															img.img-thumbnail(ng-src="{{'data:image/png;base64,' + currentAuthPicture}}" style="max-height:350px;")
+													.row
+														.col-lg-6
+															.form.form-horizontal
+																button.btn.btn-primary.text-center(ng-click="closeAuthentication()", type="submit" data-dismiss="modal") Confirm&nbsp;
+																button.btn.btn-primary.text-center(ng-click="closeAuthentication()", type="submit" data-dismiss="modal") Reject
+
 
 									br
 									.row
