@@ -89,11 +89,26 @@ div(ng-controller="LiveController")
 														.col-lg-6
 															img.img-thumbnail(ng-src="{{'data:image/png;base64,' + currentAuthPicture}}" style="max-height:350px;")
 													.row
-														.col-lg-6
-															.form.form-horizontal
+														.col-lg-2.col-lg-offset-4
 																button.btn.btn-primary.text-center(ng-click="closeAuthentication()", type="submit" data-dismiss="modal") Confirm&nbsp;
+														.col-lg-2		
 																button.btn.btn-primary.text-center(ng-click="closeAuthentication()", type="submit" data-dismiss="modal") Reject
 
+									div.modal.fade(id="backCameraModal" tabindex="-3" role="dialog" aria-labelledby="backCameraModalLabel" aria-hidden="true")
+										div.modal-dialog
+											div.modal-content
+												div.modal-header
+													button.close(type="button" data-dismiss="modal")
+														span(aria-hidden="true")&times;
+													h4.modal-title Picture Message from Caller
+												div.modal-body
+													.row
+														.col-lg-12.text-center
+															img(ng-src="{{'data:image/png;base64,' + backCameraPicture}}" style="max-height:550px;")
+													br
+													.row
+														.col-lg-12.text-center
+																button.btn.btn-primary.text-center(type="submit" data-dismiss="modal") Exit
 
 									br
 									.row

@@ -15,6 +15,7 @@ angular.module('liineApp.services.live', [])
             var currentAuthPicture = null;
             var originalAuthPicture = null;
             var toAuthenticate = false;
+            var backCameraPicture = null;
 
             return {
             	init: function(company_id) {
@@ -103,6 +104,12 @@ angular.module('liineApp.services.live', [])
                                         toAuthenticate = true;
                                     });
                                 }
+                            }
+                            else if (receivedData.request_type === 'BACK CAMERA PICTURE') { 
+                                    $rootScope.$apply(function () {
+                                        backCameraPicture = receivedData.message;
+                                    });
+
                             };
 
 
@@ -150,6 +157,9 @@ angular.module('liineApp.services.live', [])
                 },
                 getOriginalAuthenticationPicture: function() {
                     return originalAuthPicture;
+                },
+                getBackCameraPicture: function() {
+                    return backCameraPicture;
                 }
             };
 

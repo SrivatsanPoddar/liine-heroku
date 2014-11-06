@@ -119,6 +119,8 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live','liineApp.
       $scope.toAuthenticatePictures = liveService.toAuthenticatePictures();
       liveService.init($scope.company_id);
       $scope.currentAuthPicture = null;
+      $scope.backCameraPicture = liveService.getBackCameraPicture();
+
       // $scope.refreshMessages = function () {
       //   $scope.messages = liveService.getMessages();
       // };
@@ -147,9 +149,35 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live','liineApp.
           if ($scope.toAuthenticatePictures) {
             $scope.currentAuthPicture = liveService.getCurrentAuthenticationPicture();
             $scope.originalAuthPicture = liveService.getOriginalAuthenticationPicture();
+            closeAllModals();
             $('#authenticationModal').modal('show');
           }
       });
+
+      $scope.$watch(function() {return liveService.getBackCameraPicture() }, 
+        function (backCameraPic) {
+          console.log("A new back camera pic has arrived!");
+          $scope.backCameraPicture = backCameraPic;
+          if(backCameraPic !== null && backCameraPic !== "") {
+            //closeAllModals();
+            if(jQuery.isEmptyObject($("#backCameraModal").data()) || !$("#backCameraModal").data()["bs.modal"].isShown) {
+              $('#backCameraModal').modal('show');
+            }
+          }
+          
+      });
+
+      var closeAllModals = function(modalID) {
+        if(!jQuery.isEmptyObject($("#backCameraModal").data()) && $("#backCameraModal").data()["bs.modal"].isShown) {
+          $('#backCameraModal').modal('hide');
+        }
+        if(!jQuery.isEmptyObject($("#authenticateCameraModal").data()) && $("#authenticateModal").data()["bs.modal"].isShown) {
+          $('#authenticateModal').modal('hide');
+        }
+        if(!jQuery.isEmptyObject($("#imageCameraModal").data()) && $("#imageModal").data()["bs.modal"].isShown) {
+          $('#imageModal').modal('hide');
+        }
+      }
 
       $scope.closeAuthentication = function() {
         $scope.currentAuthPicture = null;
