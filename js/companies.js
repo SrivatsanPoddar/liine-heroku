@@ -62,7 +62,7 @@ exports.getCompetitorsAd = function(req, res) {
 };
 
 exports.getParentNodes = function(req, res) {
-	PG.knex('companies').select("company_name","company_id").orderBy('company_name','asc').then(function(result) {
+	PG.knex('companies').select("company_name","company_id").then(function(result) {
 		res.send(201,result);
 		console.log("Successfully retrieved parent nodes");
 	}).catch(function(err) {

@@ -16,7 +16,7 @@ exports.getCustomImages = function(req, res) {
 
 exports.setCustomImages = function(req, res) {
 	var company_id = req.body.company_id;
-	var image_urls = req.body.image_urls;
+	var image_urls = req.body.competitors;
 	PG.knex('companies').update('image_urls',image_urls).where('company_id',company_id).then(function(result) {
 		console.log("Updated images");
 		res.send(201,{result:result[0]});
