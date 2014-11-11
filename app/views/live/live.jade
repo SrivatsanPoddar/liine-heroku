@@ -54,7 +54,7 @@ div(ng-controller="LiveController")
 											button.btn.btn-primary.text-center(title="Authenticate User" ng-click="requestAuthentication()" type="button" data-toggle="modal")
 												span.glyphicon.glyphicon-lock
 										.col-lg-2
-											button.btn.btn-primary.text-center(title="Request Payment" ng-click="requestPayment()" type="button" data-toggle="modal")
+											button.btn.btn-primary.text-center(title="Request Payment" data-target="#paymentModal" type="button" data-toggle="modal")
 												span.glyphicon.glyphicon-usd
 									br					
 									.row
@@ -75,6 +75,24 @@ div(ng-controller="LiveController")
 													.row
 														.col-lg-12
 															p Add more images in the customize page
+									div.modal.fade(id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true")
+										div.modal-dialog
+											div.modal-content
+												div.modal-header
+													button.close(type="button" data-dismiss="modal")
+														span(aria-hidden="true")&times;
+													h4.modal-title.text-center Request a Payment
+												div.modal-body
+														div(ng-repeat="paymentItem in payment_items")
+															.row
+																.col-lg-10
+																	button.btn.btn-primary(ng-click="requestPayment(paymentItem)" data-dismiss="modal" style="max-height:150px;") {{paymentItem.message}}
+																.col-lg-2
+																	| ${{paymentItem.amount}}
+															br
+													.row
+														.col-lg-12.text-center
+															p Add more Payment Items in the customize page
 									div.modal.fade(id="authenticationModal" tabindex="-2" role="dialog" aria-labelledby="authenticationModalLabel" aria-hidden="true")
 										div.modal-dialog
 											div.modal-content

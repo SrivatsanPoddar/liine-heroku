@@ -220,8 +220,8 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live','liineApp.
         //toastr.success("Requested Info From Caller");
       };
 
-      $scope.requestPayment = function() {
-          var requestObject = {request_type: 'payment', message: '2 Year Warranty', amount:5.00};
+      $scope.requestPayment = function(paymentItem) {
+          var requestObject = {request_type: 'payment', message: paymentItem.message , amount:paymentItem.amount};
           $scope.sendRequest(requestObject);
       };
 
@@ -246,7 +246,7 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live','liineApp.
       $scope.image_urls = [];
 
       $scope.getImages = function() {
-        customizeService.get({company_id:$scope.company_id},function(response) {
+        customizeService.images.get({company_id:$scope.company_id},function(response) {
             console.log("Response from getting images:");
             console.log(response);
             $scope.image_urls = [];
@@ -260,6 +260,23 @@ angular.module('liineApp.controllers.live', ['liineApp.services.live','liineApp.
         } );
       };
       $scope.getImages();
+
+      //Get payment items for payment items modal
+      $scope.getPaymentItems = function() {
+        customizeService.payment_items.get({company_id:$scope.company_id},function(response) {
+            console.log("Response from getting payment items:");
+            console.log(response);
+            $scope.payment_items = [];
+            if (response.payment_items !== null) {
+              $scope.payment_items = response.payment_items;
+            }
+
+        },function(errorResponse) {
+            console.log("Error getting competitors:");
+            console.log(errorResponse);
+        } );
+      };
+      $scope.getPaymentItems();
 
       $scope.sendImageURL = function(url) {
         console.log("Sending image url:", url);

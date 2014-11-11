@@ -312,4 +312,8 @@ app.get('/customImages',customizeCallCenter.getCustomImages);
 
 app.post('/customImages',customizeCallCenter.setCustomImages);
 
+app.get('/customPaymentItems',customizeCallCenter.getPaymentItems);
+
+app.post('/customPaymentItems',customizeCallCenter.setPaymentItems);
+
 app.get('/parentNodes', companies.getParentNodes);

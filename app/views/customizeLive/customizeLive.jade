@@ -6,9 +6,10 @@ div(ng-controller="CustomizeController")
 				form.form-inline(role="form")
 					input.form-control(type="text", placeholder="Enter Company ID", ng-model="company_id", style="height:35px;") 
 					| &nbsp;
-					button.btn.btn-sm.btn-primary(type="submit" ng-click="getImages(company_id)") Load &nbsp
-					button.btn.btn-sm.btn-primary(type="submit" ng-click="saveImages(company_id)") Save
+					button.btn.btn-sm.btn-primary(type="submit" ng-click="getImages(company_id); getPaymentItems(company_id)") Load &nbsp
+					button.btn.btn-sm.btn-primary(type="submit" ng-click="saveImages(company_id); savePaymentItems(company_id)") Save
 		.row
+			h1 Images
 			.col-lg-12
 				form.form-inline(role="form")
 					input.form-control(type="text" style="height:35px;" ng-model="newImageURL" placeholder="Image URL...")
@@ -20,3 +21,21 @@ div(ng-controller="CustomizeController")
 					div(ng-repeat="image_url in image_urls")
 						.col-lg-2
 							img.img-thumbnail(ng-src="{{image_url}}" style="max-height:250px;")
+		br
+		br
+		.row
+			h1 Payment Items
+			.col-lg-12
+				form.form-inline(role="form")
+					input.form-control(type="text" style="height:35px;" ng-model="newPaymentItemDescription" placeholder="Item Description...")
+					input.form-control(type="text" style="height:35px;" ng-model="newPaymentItemAmount" placeholder="Price...")
+					button.btn.btn-sm.btn-primary(type="Add" ng-click="payment_items.push({message: newPaymentItemDescription, amount: newPaymentItemAmount})") Add
+		.row
+			br
+			.col-lg-12
+				.row
+					div(ng-repeat="paymentItem in payment_items")
+						.col-lg-6
+							| {{paymentItem.message}}
+						.col-lg-2
+							| {{paymentItem.amount}}
